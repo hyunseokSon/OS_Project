@@ -19,6 +19,7 @@ struct {
 // xv6에서 최대로 생성될 수 있는 프로세스는 64개이다.
   struct proc proc[NPROC];
   // 1. need to add code...
+  long min_priority;
 } ptable;
 
 static struct proc *initproc;
@@ -35,6 +36,13 @@ struct proc *ssu_schedule()
 	struct proc *ret = NULL;
 	//2. you need to add code ...
 
+	for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+		if (p->state == RUNNABLE) {
+		//	if(ret == ?? || ( ?? > ??? )) {
+				ret = p;
+			}
+		}
+	}
 #ifdef DEBUG
 	if(ret)
 		cprintf("PID : %d, NAME : %s, WEIGHT : %d, PRIORITY : %d\n", ret->pid, ret->name, ret->weight, ret->priority);
@@ -45,6 +53,7 @@ struct proc *ssu_schedule()
 void update_priority(struct proc *proc)
 {
 	//4. you need to add code...
+	proc->priority = proc->
 }
 
 void update_min_priority()
@@ -60,6 +69,7 @@ void update_min_priority()
 void assign_min_priority(struct proc *proc)
 {
 	//6. you need to add code...
+	proc->priority = ptable.min_priority;
 }
 
 void
@@ -113,49 +123,51 @@ myproc(void) {
 // state required to run in the kernel.
 // Otherwise return 0.
 static struct proc*
-allocproc(void)
+allocproc(void) // 신규 생성되는 child process에 해당하는 함수.
 {
   struct proc *p;
   char *sp;
 
   acquire(&ptable.lock);
 
-  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
-    if(p->state == UNUSED)
-      goto found;
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++) // proc배열에 신규 프로세스를 할당할 공간이 있는지 조사한다.
+    if(p->state == UNUSED) // 사용하지 않고 있는 것이 있다면 found로 이동한다.
+      goto found; 
 
   release(&ptable.lock);
   return 0;
 
 found:
   //7. you need to add code..
-  p->state = EMBRYO;
-  p->pid = nextpid++;
+  p->weight = weight++; // 프로세스 생성 순서에 따라 1부터 차례대로 증가.
+  p->state = EMBRYO; // 사용하고 있지 않은 배열공간이 있으면 우선 해당 공간을 EMBRYO 상태로 정의한다.
+  p->pid = nextpid++; 
 
   assign_min_priority(p); // OSLAB ???
 
   release(&ptable.lock);
 
   // Allocate kernel stack.
-  if((p->kstack = kalloc()) == 0){
-    p->state = UNUSED;
+  if((p->kstack = kalloc()) == 0){ // 신규 proc 구조체에 커널스택 메모리를 할당한다.
+    p->state = UNUSED; // 실패하면 proc구조를 다시 원래 UNUSED 상태로 변경한다.
     return 0;
   }
   sp = p->kstack + KSTACKSIZE;
 
   // Leave room for trap frame.
-  sp -= sizeof *p->tf;
+  // 여기서부터는 return을 위한 stack을 수동으로 넣어주는 부분이다.
+  sp -= sizeof *p->tf; // tf 사이즈만큼 stack pointer가 이동한다.
   p->tf = (struct trapframe*)sp;
 
   // Set up new context to start executing at forkret,
   // which returns to trapret.
   sp -= 4;
-  *(uint*)sp = (uint)trapret;
+  *(uint*)sp = (uint)trapret; // traplet의 주소를 넣는다. 아래의 forkret이 수행된 이후 trapret으로 return된다.
 
   sp -= sizeof *p->context;
   p->context = (struct context*)sp;
   memset(p->context, 0, sizeof *p->context);
-  p->context->eip = (uint)forkret;
+  p->context->eip = (uint)forkret; // 신규 proc context의 eip에 forkret 주소를 넣는다. 이러면 child는 fork함수 종료 후 forkret -> trapret으로 이동한다.
 
   return p;
 }
@@ -228,44 +240,46 @@ int
 fork(void)
 {
   int i, pid;
-  struct proc *np;
+  struct proc *np; // 새로운 proc 구조체를 선언한다.(==Linux의 task_struct와 동일)
   struct proc *curproc = myproc();
 
   // Allocate process.
+  // 새로운 구조체가 할당할 수 있는 배열을 탐색하여 할당한다.
   if((np = allocproc()) == 0){
     return -1;
   }
 
   // Copy process state from proc.
-  if((np->pgdir = copyuvm(curproc->pgdir, curproc->sz)) == 0){
+  if((np->pgdir = copyuvm(curproc->pgdir, curproc->sz)) == 0){ // 신규 자식의 proc 구조체에 현재 proc의 내용을 복사한다.
     kfree(np->kstack);
     np->kstack = 0;
     np->state = UNUSED;
     return -1;
   }
   np->sz = curproc->sz;
-  np->parent = curproc;
-  *np->tf = *curproc->tf;
+  np->parent = curproc; // 신규 np의 부모를 proc으로 설정한다.
+  *np->tf = *curproc->tf; // 신규 np의 trapframe(레지스터 등 정보 저장)에 부모의 것을 복사한다.
 
   // Clear %eax so that fork returns 0 in the child.
-  np->tf->eax = 0;
+  np->tf->eax = 0; // 자식 np의 trapframe의 %eax값을 0으로 지정한다.
+  				   // 자식 프로세스는 forkret 후 trapret으로 돌아갈 때 리턴값으로 eax 값을 사용하게 된다.
 
   for(i = 0; i < NOFILE; i++)
     if(curproc->ofile[i])
-      np->ofile[i] = filedup(curproc->ofile[i]);
+      np->ofile[i] = filedup(curproc->ofile[i]); 
   np->cwd = idup(curproc->cwd);
 
   safestrcpy(np->name, curproc->name, sizeof(curproc->name));
 
-  pid = np->pid;
+  pid = np->pid; // 자식의 pid를 부모에게 전달한다.
 
   acquire(&ptable.lock);
 
-  np->state = RUNNABLE;
+  np->state = RUNNABLE; // 자식의 프로세스 상태를 RUNNABLE로 지정한다.
 
   release(&ptable.lock);
 
-  return pid;
+  return pid; // 이때 부모는 자식 프로세스의 pid를 가지고 리턴한다. (fork가 trap에 걸려서 온 것이니 trapret 한다.)
 }
 
 // Exit the current process.  Does not return.
@@ -382,6 +396,7 @@ scheduler(void)
     sti();
 
     // Loop over process table looking for process to run.
+	// ptable을 돌며 실행 가능한 process를 찾는다.
     acquire(&ptable.lock);
 
 	p = ssu_schedule(); // OSLAB ???
