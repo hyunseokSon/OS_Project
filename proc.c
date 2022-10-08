@@ -7,9 +7,18 @@
 #include "proc.h"
 #include "spinlock.h"
 
+#define TIME_SLICE 10000000
+#define NULL ((void *)0)
+
+int weight = 1;
+
 struct {
   struct spinlock lock;
+
+// proc 구조체는 ptable이라는 proc구조체의 배열로 관리됨.
+// xv6에서 최대로 생성될 수 있는 프로세스는 64개이다.
   struct proc proc[NPROC];
+  // 1. need to add code...
 } ptable;
 
 static struct proc *initproc;
@@ -19,6 +28,39 @@ extern void forkret(void);
 extern void trapret(void);
 
 static void wakeup1(void *chan);
+
+struct proc *ssu_schedule()
+{
+	struct proc *p;
+	struct proc *ret = NULL;
+	//2. you need to add code ...
+
+#ifdef DEBUG
+	if(ret)
+		cprintf("PID : %d, NAME : %s, WEIGHT : %d, PRIORITY : %d\n", ret->pid, ret->name, ret->weight, ret->priority);
+#endif
+	return ret;
+}
+
+void update_priority(struct proc *proc)
+{
+	//4. you need to add code...
+}
+
+void update_min_priority()
+{
+	struct proc *min = NULL;
+	struct proc *p;
+	//5. you need to add code..
+
+	if (min != NULL)
+		ptable.min_priority = min->priority;
+}
+
+void assign_min_priority(struct proc *proc)
+{
+	//6. you need to add code...
+}
 
 void
 pinit(void)
@@ -86,8 +128,11 @@ allocproc(void)
   return 0;
 
 found:
+  //7. you need to add code..
   p->state = EMBRYO;
   p->pid = nextpid++;
+
+  assign_min_priority(p); // OSLAB ???
 
   release(&ptable.lock);
 
@@ -117,6 +162,8 @@ found:
 
 //PAGEBREAK: 32
 // Set up first user process.
+
+//allocproc()함수를 호출하여 할당할 수 있는 proc구조체가 있는지 확인하고, 있으면 할당받는다.
 void
 userinit(void)
 {
@@ -319,6 +366,10 @@ wait(void)
 //  - swtch to start running that process
 //  - eventually that process transfers control
 //      via swtch back to the scheduler.
+
+// ptable을 loop를 돌면서 running 가능한 프로세스를 찾아서 선택함. 
+// 이때 ptable을 lock을 걸어야 하나의 process를 schedule()함수에서 리턴을 할 수 있음.
+// lock을 걸지 않으면 table 탐색 중 다른 process가 I/O 등으로 schedule() 함수를 부르면 ptable을 또 탐색할 것임.
 void
 scheduler(void)
 {
@@ -332,6 +383,33 @@ scheduler(void)
 
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
+
+	p = ssu_schedule(); // OSLAB ???
+	if (p == NULL) {
+		release(&ptable.lock);
+		continue;
+	}
+
+	c->proc = p;
+
+	// OS는 실행을 위해 프로세스 정보를 load함.
+	switchuvm(p); 	// uvm은 사용자
+	
+	// 프로세스를 로드하면 프로세스는 실행중으로 표시됨.
+	p->state = RUNNING;
+
+	//프로세서가 이를 실행하도록 전환.
+	swtch(&(c->scheduler), p->context);
+
+	// 프로세스가 스케줄러로 돌아올 때 (swtch가 일어난 이후) 커널은 그것의 메모리를 load함.
+	switchkvm();	// kvm은 커널
+
+	// 8. you need to add code,,,
+
+	c->proc=0;
+	release(&ptable.lock);
+
+/*
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
       if(p->state != RUNNABLE)
         continue;
@@ -351,6 +429,7 @@ scheduler(void)
       c->proc = 0;
     }
     release(&ptable.lock);
+*/
 
   }
 }
@@ -459,9 +538,18 @@ wakeup1(void *chan)
 {
   struct proc *p;
 
+  /*
+
+ 9. need to add code...
+ in the middle, add->  assign_min_priority(p); // OSLAB ???
+   */
+
+
+  /*
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     if(p->state == SLEEPING && p->chan == chan)
       p->state = RUNNABLE;
+	  */
 }
 
 // Wake up all processes sleeping on chan.
@@ -532,3 +620,15 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+void do_weightset(int weight) // OSLAB
+{
+	acquire(&ptable.lock);
+	//10. you need to add code...
+	release(&ptable.lock);
+}
+
+
+
+
+
