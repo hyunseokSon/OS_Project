@@ -12,12 +12,12 @@
 
 int weight = 1;
 
-struct {
-  struct spinlock lock;
-
 // proc 구조체는 ptable이라는 proc구조체의 배열로 관리됨.
 // xv6에서 최대로 생성될 수 있는 프로세스는 64개이다.
+struct {
+  struct spinlock lock;
   struct proc proc[NPROC];
+  
   // 1. need to add code...
   long min_priority;
 } ptable;
@@ -38,7 +38,7 @@ struct proc *ssu_schedule()
 
 	for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
 		if (p->state == RUNNABLE) {
-		//	if(ret == ?? || ( ?? > ??? )) {
+			if(ret == NULL || ( ret->priority > p->priority )) {
 				ret = p;
 			}
 		}
@@ -52,23 +52,29 @@ struct proc *ssu_schedule()
 
 void update_priority(struct proc *proc)
 {
-	//4. you need to add code...
-	proc->priority = proc->
+	//4. you need to add code... finish!!
+	proc->priority = proc->priority + (TIME_SLICE / weight);
 }
 
 void update_min_priority()
 {
 	struct proc *min = NULL;
 	struct proc *p;
-	//5. you need to add code..
+	//5. you need to add code.. finish!!
 
+	for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+		if (p->state == RUNNABLE) {
+			if (min == NULL || (min->priority > p->priority))
+				min = p;
+		}
+	}
 	if (min != NULL)
 		ptable.min_priority = min->priority;
 }
 
 void assign_min_priority(struct proc *proc)
 {
-	//6. you need to add code...
+	//6. you need to add code... finish!!
 	proc->priority = ptable.min_priority;
 }
 
@@ -143,7 +149,7 @@ found:
   p->state = EMBRYO; // 사용하고 있지 않은 배열공간이 있으면 우선 해당 공간을 EMBRYO 상태로 정의한다.
   p->pid = nextpid++; 
 
-  assign_min_priority(p); // OSLAB ???
+  assign_min_priority(p); // OSLAB 
 
   release(&ptable.lock);
 
@@ -181,6 +187,8 @@ userinit(void)
 {
   struct proc *p;
   extern char _binary_initcode_start[], _binary_initcode_size[];
+
+  ptable.min_priority= 3; // OSLAB
 
   p = allocproc();
   
@@ -399,7 +407,8 @@ scheduler(void)
 	// ptable을 돌며 실행 가능한 process를 찾는다.
     acquire(&ptable.lock);
 
-	p = ssu_schedule(); // OSLAB ???
+	p = ssu_schedule(); // OSLAB
+
 	if (p == NULL) {
 		release(&ptable.lock);
 		continue;
@@ -420,31 +429,11 @@ scheduler(void)
 	switchkvm();	// kvm은 커널
 
 	// 8. you need to add code,,,
+	update_priority(p);
+	update_min_priority();
 
 	c->proc=0;
 	release(&ptable.lock);
-
-/*
-    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-      if(p->state != RUNNABLE)
-        continue;
-
-      // Switch to chosen process.  It is the process's job
-      // to release ptable.lock and then reacquire it
-      // before jumping back to us.
-      c->proc = p;
-      switchuvm(p);
-      p->state = RUNNING;
-
-      swtch(&(c->scheduler), p->context);
-      switchkvm();
-
-      // Process is done running for now.
-      // It should have changed its p->state before coming back.
-      c->proc = 0;
-    }
-    release(&ptable.lock);
-*/
 
   }
 }
@@ -553,18 +542,12 @@ wakeup1(void *chan)
 {
   struct proc *p;
 
-  /*
-
- 9. need to add code...
- in the middle, add->  assign_min_priority(p); // OSLAB ???
-   */
-
-
-  /*
+// 9. need to add code...
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     if(p->state == SLEEPING && p->chan == chan)
       p->state = RUNNABLE;
-	  */
+
+  assign_min_priority(p); //RUNNABLE 된 process에게 우선순위를 할당한다.
 }
 
 // Wake up all processes sleeping on chan.
@@ -639,11 +622,8 @@ procdump(void)
 void do_weightset(int weight) // OSLAB
 {
 	acquire(&ptable.lock);
-	//10. you need to add code...
+	myproc()->weight = weight;
 	release(&ptable.lock);
 }
-
-
-
 
 
