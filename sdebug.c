@@ -9,6 +9,8 @@
 void sdebug_func(void)
 {
 	int n, pid;
+	int start_time=0, end_time=0;
+
 	printf(1, "start sdebug command\n");
 
 	for (n=0; n < PNUM ; n++) 
@@ -18,14 +20,21 @@ void sdebug_func(void)
 			continue;
 
 		else if (pid == 0) // child process인 경우.
-		{ 
+		{
+			start_time = uptime();
 			weightset(n+1);
 
-			for (long long counter=0; counter < TOTAL_COUNTER ; counter++)
+			for (long long counter=0; counter <= TOTAL_COUNTER ; counter++)
 			{
 				if(counter == PRINT_CYCLE)
 				{
-					printf(1, "PID = %d, WEIGHT: %d\n", getpid(), n+1);
+					end_time = uptime();
+					printf(1, "PID = %d, WEIGHT: %d, TIMES = %d ms\n", getpid(), n+1, (end_time - start_time) * 10);
+				}
+
+				if (counter == TOTAL_COUNTER) {
+					printf(1, "PID : %d terminated\n", getpid());
+					exit();
 				}
 			}
 		}
@@ -33,7 +42,7 @@ void sdebug_func(void)
 		else // error..
 		{
 			printf(2, "\n Error... \n");
-			exit();
+			break;
 		}
 	}
 
@@ -46,13 +55,6 @@ void sdebug_func(void)
 			exit();
 		}
 	}
-	//wait();
-	/*if (pid>0) {
-		for(; n>0; n--) {
-			wait();
-		}
-	}
-	*/
 	printf(1, "end of sdebug command\n");
 }
 

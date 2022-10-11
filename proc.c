@@ -43,6 +43,8 @@ struct proc *ssu_schedule()
 			}
 		}
 	}
+
+	// 과제3-3번  Code...
 #ifdef DEBUG
 	if(ret)
 		cprintf("PID : %d, NAME : %s, WEIGHT : %d, PRIORITY : %d\n", ret->pid, ret->name, ret->weight, ret->priority);
@@ -53,7 +55,9 @@ struct proc *ssu_schedule()
 void update_priority(struct proc *proc)
 {
 	//4. you need to add code... finish!!
-	proc->priority = proc->priority + (TIME_SLICE / weight);
+	
+	//proc->priority = proc->priority + (TIME_SLICE / weight);
+	proc -> priority = proc->priority + (TIME_SLICE / proc->weight);
 }
 
 void update_min_priority()
@@ -188,7 +192,7 @@ userinit(void)
   struct proc *p;
   extern char _binary_initcode_start[], _binary_initcode_size[];
 
-  ptable.min_priority= 3; // OSLAB
+  ptable.min_priority= 3; // 시작 시 priority = 3 으로 넣겠다.
 
   p = allocproc();
   
