@@ -34,8 +34,8 @@ struct proc *ssu_schedule()
 {
 	struct proc *p;
 	struct proc *ret = NULL;
-	//2. you need to add code ...
 
+	//2. you need to add code ...
 	for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
 		if (p->state == RUNNABLE) {
 			if(ret == NULL || ( ret->priority > p->priority )) {
