@@ -10,7 +10,6 @@
 #define TIME_SLICE 10000000
 #define NULL ((void *)0)
 
-int weight = 1;
 
 // proc 구조체는 ptable이라는 proc구조체의 배열로 관리됨.
 // xv6에서 최대로 생성될 수 있는 프로세스는 64개이다.
@@ -23,6 +22,9 @@ struct {
 } ptable;
 
 static struct proc *initproc;
+
+//weight 값 추가.
+int weight = 1;
 
 int nextpid = 1;
 extern void forkret(void);
@@ -55,8 +57,6 @@ struct proc *ssu_schedule()
 void update_priority(struct proc *proc)
 {
 	//4. you need to add code... finish!!
-	
-	//proc->priority = proc->priority + (TIME_SLICE / weight);
 	proc -> priority = proc->priority + (TIME_SLICE / proc->weight);
 }
 
@@ -150,6 +150,7 @@ allocproc(void) // 신규 생성되는 child process에 해당하는 함수.
 found:
   //7. you need to add code..
   p->weight = weight++; // 프로세스 생성 순서에 따라 1부터 차례대로 증가.
+
   p->state = EMBRYO; // 사용하고 있지 않은 배열공간이 있으면 우선 해당 공간을 EMBRYO 상태로 정의한다.
   p->pid = nextpid++; 
 
@@ -548,10 +549,11 @@ wakeup1(void *chan)
 
 // 9. need to add code...
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
-    if(p->state == SLEEPING && p->chan == chan)
+    if(p->state == SLEEPING && p->chan == chan) {
       p->state = RUNNABLE;
 
   assign_min_priority(p); //RUNNABLE 된 process에게 우선순위를 할당한다.
+	}
 }
 
 // Wake up all processes sleeping on chan.
