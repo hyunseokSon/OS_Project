@@ -55,6 +55,13 @@ void sdebug_func(void)
 			exit();
 		}
 	}
+
+	if (wait() != -1)
+	{
+		printf(1, "wait got too many\n");
+		exit();
+	}
+
 	printf(1, "end of sdebug command\n");
 }
 
