@@ -24,19 +24,16 @@ void sdebug_func(void)
 			start_time = uptime();
 			weightset(n+1);
 
-			for (long long counter=0; counter <= TOTAL_COUNTER ; counter++)
+			for (long long counter=0; counter < TOTAL_COUNTER ; counter++)
 			{
 				if(counter == PRINT_CYCLE)
 				{
 					end_time = uptime();
 					printf(1, "PID = %d, WEIGHT: %d, TIMES = %d ms\n", getpid(), n+1, (end_time - start_time) * 10);
 				}
-
-				if (counter == TOTAL_COUNTER) {
-					printf(1, "PID : %d terminated\n", getpid());
-					exit();
-				}
 			}
+
+			exit();
 		}
 
 		else // error..
@@ -49,18 +46,16 @@ void sdebug_func(void)
 	// parent process는 child process를 wait해줘야 함.
 	for(; n> 0; n--)
 	{
-		if (wait() <0)
-		{
-			printf(1, "wait stopped early\n");
-			exit();
-		}
+		pid = wait();
+		printf(1, "PID : %d terminated\n", pid);
 	}
 
-	if (wait() != -1)
+/*	if (wait() != -1)
 	{
 		printf(1, "wait got too many\n");
 		exit();
 	}
+	*/
 
 	printf(1, "end of sdebug command\n");
 }

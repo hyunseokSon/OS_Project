@@ -551,8 +551,7 @@ wakeup1(void *chan)
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     if(p->state == SLEEPING && p->chan == chan) {
       p->state = RUNNABLE;
-
-  assign_min_priority(p); //RUNNABLE 된 process에게 우선순위를 할당한다.
+	  assign_min_priority(p); //RUNNABLE 된 process에게 우선순위를 할당한다.
 	}
 }
 
