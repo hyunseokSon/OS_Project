@@ -18,7 +18,7 @@ struct {
   struct proc proc[NPROC];
   
   // 1. need to add code...
-  long min_priority;
+  long long min_priority;
 } ptable;
 
 static struct proc *initproc;

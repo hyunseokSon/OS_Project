@@ -51,7 +51,7 @@ struct proc {
   char name[16];               // Process name (debugging)
 
   int weight;				   // 가중치 부여
-  int priority;				   // 우선순위 부여
+  long long priority;				   // 우선순위 부여
 };
 
 // Process memory is laid out contiguously, low addresses first:
