@@ -7,6 +7,7 @@
 #include "proc.h"
 #include "spinlock.h"
 
+// 20182625 TIME_SLICE 상수 및 NULL값 정의
 #define TIME_SLICE 10000000
 #define NULL ((void *)0)
 
@@ -17,13 +18,13 @@ struct {
   struct spinlock lock;
   struct proc proc[NPROC];
   
-  // 1. need to add code...
+  // 20182625 최소 우선순위 값을 ptable 안에 저장
   long long min_priority;
 } ptable;
 
 static struct proc *initproc;
 
-//weight 값 추가.
+// 20182625 가중치(weight) 값 추가한다. 
 int weight = 1;
 
 int nextpid = 1;
@@ -32,12 +33,14 @@ extern void trapret(void);
 
 static void wakeup1(void *chan);
 
+
+//20182625 새로 생긴 프로세스가 제외되지 않도록 큰 가중치를 부여하는 스케줄러.
 struct proc *ssu_schedule()
 {
 	struct proc *p;
 	struct proc *ret = NULL;
 
-	//2. you need to add code ...
+	// 20182625 ptable을 순회하면서 RUNNABLE 상태인 프로세스를 찾는다.
 	for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
 		if (p->state == RUNNABLE) {
 			if(ret == NULL || ( ret->priority > p->priority )) {
@@ -193,8 +196,11 @@ userinit(void)
   struct proc *p;
   extern char _binary_initcode_start[], _binary_initcode_size[];
 
-  ptable.min_priority= 3; // 시작 시 priority = 3 으로 넣겠다.
+  // 시스템 시작 시 총 세 개의 유저 프로세스 ("Initcode", "Init", "sh" )가 생성되기 때문에
+  // 최소 priority 값을 3으로 지정한다.
+  ptable.min_priority= 3; 
 
+  //할당할 수 있는 proc 구조체가 있는지 확인한다. 있으면 할당받는다.
   p = allocproc();
   
   initproc = p;

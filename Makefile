@@ -91,6 +91,7 @@ ifneq ($(shell $(CC) -dumpspecs 2>/dev/null | grep -e '[^f]nopie'),)
 CFLAGS += -fno-pie -nopie
 endif
 
+# debug=1 매개변수를 전달받았을 때 프로세스 선정 과정에 대한 디버그 기능 수행.
 ifeq ($(debug), 1)
 CFLAGS += -DDEBUG
 endif
@@ -222,6 +223,8 @@ GDBPORT = $(shell expr `id -u` % 5000 + 25000)
 QEMUGDB = $(shell if $(QEMU) -help | grep -q '^-gdb'; \
 	then echo "-gdb tcp::$(GDBPORT)"; \
 	else echo "-s -p $(GDBPORT)"; fi)
+
+# 과제 3은 SSU Scheduler를 위한 스케줄링 함수 구현이 목표이므로, CPU 코어 개수를 1개로 제한한다.
 ifndef CPUS
 CPUS := 1
 endif
