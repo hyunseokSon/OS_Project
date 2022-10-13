@@ -3,7 +3,7 @@
 #include "user.h"
 
 #define PNUM 5 // Process 개수
-#define PRINT_CYCLE 100000000 // Process가 정보를 출력하는 주기
+#define PRINT_CYCLE 10000000 // Process가 정보를 출력하는 주기
 #define TOTAL_COUNTER 500000000 // Process가 종료할 때 counter 값
 
 void sdebug_func(void)
@@ -20,7 +20,10 @@ void sdebug_func(void)
 		pid = fork();
 
 		if (pid < 0)
+		{
+			printf(1, "ERROR : fork failed...\n");
 			break;
+		}
 
 		else if (pid == 0) // child process인 경우.
 		{
