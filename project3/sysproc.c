@@ -90,12 +90,14 @@ sys_uptime(void)
   return xticks;
 }
 
+// sys_weightset() 시스템 콜의 기능
 int sys_weightset(void)
 {
 	int weight;
-	if (argint(0, &weight) <0)
+	if (argint(0, &weight) <0) //20182625 input argument를 weight에다가 저장한다.
 		return -1;
 
+	//20182625 weight가 0일 때 에러 처리.
 	if (weight == 0) {
 		return -1;
 	}

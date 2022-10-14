@@ -24,7 +24,7 @@ struct {
 
 static struct proc *initproc;
 
-// 20182625 가중치(weight) 값 추가한다. 
+// 20182625 가중치(weight) 값 추가 
 int weight = 1;
 
 int nextpid = 1;
@@ -42,14 +42,15 @@ struct proc *ssu_schedule()
 
 	// 20182625 ptable을 순회하면서 RUNNABLE 상태인 프로세스를 찾는다.
 	for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
-		if (p->state == RUNNABLE) {
-			if(ret == NULL || ( ret->priority > p->priority )) {
+		if (p->state == RUNNABLE) { // process 상태가 RUNNABLE이라면
+			if(ret == NULL || ( ret->priority > p->priority )) { //현재 process의 우선순위 값이 ret의 우선순위보다 작다면, ret의 우선순위 값을 갱신해줌.
 				ret = p;
 			}
 		}
 	}
 
-	// 과제3-3번  Code...
+	//20182625 xv6 빌드 시 "debug=1" 매개변수 전달을 통해, 스케줄링 함수에서 다음 실행될 프로세스를
+	//선택할 때마다 PID, process 이름, process 가중치, Process 우선순위 값을 출력한다.
 #ifdef DEBUG
 	if(ret)
 		cprintf("PID : %d, NAME : %s, WEIGHT : %d, PRIORITY : %d\n", ret->pid, ret->name, ret->weight, ret->priority);
@@ -59,29 +60,29 @@ struct proc *ssu_schedule()
 
 void update_priority(struct proc *proc)
 {
-	//4. you need to add code... finish!!
-	proc -> priority = proc->priority + (TIME_SLICE / proc->weight);
+	//20182625 스케줄링 함수가 호출될 때마다 priority 값이 update됨.
+	proc->priority = proc->priority + (TIME_SLICE / proc->weight);
 }
 
-void update_min_priority()
+void update_min_priority() // 최소 우선순위를 update해주는 함수
 {
 	struct proc *min = NULL;
 	struct proc *p;
-	//5. you need to add code.. finish!!
-
+	
+	//20182625 ptable을 순회하면서 process 상태가 RUNNABLE인 것들 중 가장 높은 우선순위를 가진 process의 우선순위 값을 ptable의 priority 값에 저장.
 	for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
-		if (p->state == RUNNABLE) {
-			if (min == NULL || (min->priority > p->priority))
+		if (p->state == RUNNABLE) { // process 상태가 RUNNABLE이라면
+			if (min == NULL || (min->priority > p->priority)) // 현재 process의 우선순위 값이 min의 우선순위 값보다 작다면, min의 우선순위 값을 갱신해줌.
 				min = p;
 		}
 	}
 	if (min != NULL)
-		ptable.min_priority = min->priority;
+		ptable.min_priority = min->priority; // min의 우선순위 값을 ptable의 우선순위 값에 저장.
 }
 
 void assign_min_priority(struct proc *proc)
 {
-	//6. you need to add code... finish!!
+	//20182625 ptable에 저장된 최소 우선순위 값을 proc 구조체의 우선순위 값으로 할당.
 	proc->priority = ptable.min_priority;
 }
 
@@ -151,13 +152,13 @@ allocproc(void) // 신규 생성되는 child process에 해당하는 함수.
   return 0;
 
 found:
-  //7. you need to add code..
+  //20182625
   p->weight = weight++; // 프로세스 생성 순서에 따라 1부터 차례대로 증가.
 
   p->state = EMBRYO; // 사용하고 있지 않은 배열공간이 있으면 우선 해당 공간을 EMBRYO 상태로 정의한다.
   p->pid = nextpid++; 
 
-  assign_min_priority(p); // OSLAB 
+  assign_min_priority(p); // 새로 생성된 process의 우선순위 값을 ptable의 최소 우선순위 값으로 할당.
 
   release(&ptable.lock);
 
@@ -418,7 +419,7 @@ scheduler(void)
 	// ptable을 돌며 실행 가능한 process를 찾는다.
     acquire(&ptable.lock);
 
-	p = ssu_schedule(); // OSLAB
+	p = ssu_schedule(); //20182625 SSU_schedule()함수를 통해 RUNNABLE한 process 중 우선순위가 가장 먼저인 process를 찾는다.
 
 	if (p == NULL) {
 		release(&ptable.lock);
@@ -439,7 +440,7 @@ scheduler(void)
 	// 프로세스가 스케줄러로 돌아올 때 (swtch가 일어난 이후) 커널은 그것의 메모리를 load함.
 	switchkvm();	// kvm은 커널
 
-	// 8. you need to add code,,,
+	//20182625 스케줄링함수가 호출될때마다 priority값은 갱신된다.
 	update_priority(p);
 	update_min_priority();
 
@@ -548,16 +549,17 @@ sleep(void *chan, struct spinlock *lk)
 //PAGEBREAK!
 // Wake up all processes sleeping on chan.
 // The ptable lock must be held.
+// wakeup() -> wakeup1() 하면 SLEEPING -> RUNNABLE로 바뀐다.
 static void
 wakeup1(void *chan)
 {
   struct proc *p;
 
-// 9. need to add code...
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
-    if(p->state == SLEEPING && p->chan == chan) {
+    if(p->state == SLEEPING && p->chan == chan) { 
       p->state = RUNNABLE;
-	  assign_min_priority(p); //RUNNABLE 된 process에게 우선순위를 할당한다.
+	  assign_min_priority(p); //20182625 스케줄링 함수에서 priority 값이 가장 작은 process를 다음 실행할 것으로 선정함.
+	  						  // 따라서 관리하고 있는 process의 Priority값 중 최소 값을 할당함.
 	}
 }
 
@@ -630,11 +632,9 @@ procdump(void)
   }
 }
 
-void do_weightset(int weight) // OSLAB
+void do_weightset(int weight) //20182625, sys_weightset() 시스템 콜을 위한 커널 함수
 {
 	acquire(&ptable.lock);
-	myproc()->weight = weight;
+	myproc()->weight = weight; // myproc에 weight 값 저장
 	release(&ptable.lock);
 }
-
-

@@ -50,8 +50,8 @@ struct proc {
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
 
-  int weight;				   // 가중치 부여
-  long long priority;				   // 우선순위 부여
+  int weight;				   //20182625, 가중치 부여
+  long long priority;		   //20182625, 우선순위 부여
 };
 
 // Process memory is laid out contiguously, low addresses first:

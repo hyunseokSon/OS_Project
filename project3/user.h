@@ -23,7 +23,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-int weightset(int);
+int weightset(int); //20182625 weightset 시스템 콜 추가
 
 // ulib.c
 int stat(const char*, struct stat*);
