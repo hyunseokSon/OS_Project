@@ -101,5 +101,5 @@ int sys_weightset(void)
 	}
 
 	do_weightset(weight);
-	return 0;
+	return weight;
 }

@@ -9,9 +9,6 @@
 void sdebug_func(void)
 {
 	int n, pid;
-	long start_time=0, end_time=0;
-	int weight = 1;
-	long counter =0;
 
 	printf(1, "start sdebug command\n");
 
@@ -25,61 +22,45 @@ void sdebug_func(void)
 			break;
 		}
 
-		else if (pid == 0) // child process인 경우.
+		if (pid == 0) // child process인 경우.
 		{
-			start_time = uptime();
-			weightset(weight);
+			long counter = 0;
+			int first = 1;
+			weightset(n+1);
 
-			while(1) 
+			int start_time = uptime();
+			int print_counter = PRINT_CYCLE;
+
+			while (counter < TOTAL_COUNTER)
 			{
+				if (print_counter ==0)
+				{
+					if (first)
+					{
+						int end_time = uptime();
+						printf(1, "PID : %d, WEIGHT : %d, ", getpid(), weightset(n+1));
+						printf(1, "TIMES : %d ms\n", (end_time - start_time) * 10);
+						first = 0;
+					}
+					print_counter = PRINT_CYCLE;
+				}
+				print_counter--;
 				counter++;
-
-				if (counter == PRINT_CYCLE)
-				{
-					end_time = uptime();
-					printf(1, "PID = %d, WEIGHT: %d, TIMES = %d ms\n", getpid(), weight, (end_time - start_time) * 10);
-				}
-
-				if (counter == TOTAL_COUNTER)
-				{
-					exit();
-				}
-			}
-		}
-		weight++;
-	}
-			/*weightset(n+1);
-
-			for (long long counter=0; counter < TOTAL_COUNTER ; counter++)
-			{
-				if(counter == PRINT_CYCLE)
-				{
-					end_time = uptime();
-					printf(1, "PID = %d, WEIGHT: %d, TIMES = %d ms\n", getpid(), n+1, (end_time - start_time) * 10);
-				}
 			}
 
+			printf(1, "PID : %d terminated\n", getpid());
 			exit();
 		}
-
-		else // error..
-		{
-			printf(2, "\n Error... \n");
-			break;
-		}
-		*/
+	}
 
 	// parent process는 child process를 wait해줘야 함.
 	for(; n> 0; n--)
 	{
-		pid = wait();
-		if (pid <0) 
+		if(wait() <0) 
 		{
 			printf(1, "wait stopped early\n");
 			exit();
 		}
-
-		printf(1, "PID : %d terminated\n", pid);
 	}
 
 	if (wait() != -1)
