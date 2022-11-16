@@ -7,11 +7,14 @@ void delete_space(char s[]);
 void space_split(char menu[10], char *choiceMenu[10]);
 void random_reference_string(int page_string[]);
 void cleanBuffer(void);
-void menu_b(int, char fin[4]);
+int menu_b(int, char fin[4]);
 int menu_c(int, char fin[4]);
 void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500]);
-int check_index(int page_frame, int pageArray[], int n);
-void fifo(int page_string[500], int page_frame);
+int check_index(int page_frame, int *pageArray, int n);
+int nearIndex(int pf, int cur, int *pageArray, int n, int d);
+int checkMax(int pf, int *pageArray, int check_value);
+void opt(int page_string[500], int page_frame, int *pageArray);
+void fifo(int page_string[500], int page_frame, int *pageArray);
 
 int main()
 {
@@ -25,7 +28,7 @@ int main()
 		int flag=0;					// 조건을 충족하는 지 판별하기 위한 값.
 		int flagEight=0;			// A. 메뉴 선택 시 8. All이 있는지 판별하기 위한 값.
 		int page_string[500] = {0};	// 500개의 page string.
-		int page_frame;				// page frame 개수
+		int page_frame=0;			// page frame 개수
 		int input_data;				// 데이터 입력 방식
 		FILE *f1,*f2;				// 파일 입력 및 출력을 위한 파일포인터
 
@@ -74,7 +77,7 @@ int main()
 		if (flag==1) // 범위 안의 값을 입력하지 않았을 시 다시 메뉴 선택을 하도록 한다.
 			continue;
 
-		menu_b(page_frame, fin); // B 메뉴 호출
+		page_frame = menu_b(page_frame, fin); // B 메뉴 호출
 		int pageArray[page_frame]; // page frame
 
 		input_data = menu_c(input_data, fin); // C 메뉴 호출
@@ -95,12 +98,13 @@ int main()
 			{
 				if (realMenu[i] == 1)
 				{
-					printf("메뉴 1번 선택..\n");
+					// 1번 Optimal 선택 시
+					opt(page_string, page_frame, pageArray);
 				}
 				else if (realMenu[i] == 2)
 				{
 					// 2번 FIFO 선택 시
-					fifo(page_string, page_frame);
+					fifo(page_string, page_frame, pageArray);
 				}
 				else if (realMenu[i] == 3)
 				{
@@ -154,7 +158,7 @@ void delete_space(char deleteSpaceMenu[10])
 //1~30을 500번 돌린 후 page_string배열에 넣는다.
 void random_reference_string(int page_string[500])
 {
-	srand(time(NULL));
+	//srand(time(NULL));
 	int random = 0;
 	for (int n=0; n<500; n++)
 	{
@@ -170,7 +174,7 @@ void cleanBuffer(void)
 }
 
 // B 메뉴 호출 함수.
-void menu_b(int page_frame, char fin[4])
+int menu_b(int page_frame, char fin[4])
 {
 	while(1)
 	{
@@ -189,6 +193,7 @@ void menu_b(int page_frame, char fin[4])
 		}
 
 		else if (page_frame>=3 && page_frame <= 10) {
+			return page_frame;
 			break;
 		}
 		else
@@ -291,7 +296,7 @@ void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500]) {
 }
 
 // 페이지 프레임에 참조 스트링 값이 있는지 확인하는 함수
-int check_index(int page_frame, int pageArray[page_frame], int n)
+int check_index(int page_frame, int *pageArray, int n)
 {
 	for(int k=0; k< page_frame ; k++)
 	{
@@ -302,16 +307,195 @@ int check_index(int page_frame, int pageArray[page_frame], int n)
 	return 0;
 }
 
-
-void fifo(int page_string[500], int page_frame)
+// 가장 가까이 있는 것 확인 (체크해볼 것)
+int nearIndex(int pf, int cur, int *pageArray, int n, int d)
 {
+	//pf 는 page frame, cur은 현재 위치, n은 참조 스트링 값, q는 ??? (확인)
+	int a = cur;
+	if (d == -1) 
+	{
+		for(a--; a>=0; a--) 
+		{
+			if (pageArray[a] == n)
+				return a;
+		}
+		return a;
+	}
+	else 
+	{
+		for(a++; a>pf; a++)
+		{
+			if (pageArray[a] == n)
+			{
+				return a;
+			}
+		}
+		return a;
+	}
+}
+
+int checkMax(int pf, int *pageArray, int check_value)
+{
+	int ch = 0;
+	if (check_value==1) // 최대일 때
+	{
+		int n=0;
+		int big = pageArray[0];
+
+		for (n++; n<pf; n++)
+		{
+			if (pageArray[n] > big)
+			{
+				big = pageArray[n];
+				ch = n;
+			}
+		}
+		return ch;
+	}
+
+	else 
+	{
+		int n=0;
+		int small = pageArray[0];
+		for(n++; n < pf; n++) {
+			if (pageArray[n] < small)
+			{
+				small = pageArray[n];
+				ch = n;
+			}
+		}
+		return ch;
+	}
+}
+
+// 1번 메뉴 : Optimal
+void opt(int page_string[500], int page_frame, int *pageArray)
+{
+	int index = -1;
+	int fault = 0, flag_fault = 0;
+	int t;
+	int block = 0;
+	int nIndex[page_frame];
+
+	printf("page_frame : %d\n", page_frame);
 	printf("-----------------------------------------");
 	printf("\n (2). FIFO \n");
+	printf("-----------------------------------------");
+	printf("\n참조스트림");
 
+	for(t=0; t < page_frame; t++) 
+	{
+		pageArray[t] = -1;
+		printf("  page_frame[%d] ", t);
+	}
 
+	printf(" 페이지 폴트\n");
 
+	for (t=0; t<500; t++)
+	{
+		if(check_index(block, pageArray, page_string[t]))
+		{
+			flag_fault = 0;
+		}
+		else
+		{
+			if(block == page_frame) 
+			{
+				int tmp=0;
+				for (; tmp < page_frame; tmp++)
+				{
+					nIndex[tmp] = nearIndex(500, t, page_string, pageArray[tmp], 1);
+				}
+				int goal = checkMax(page_frame, nIndex, 1);
+				pageArray[goal] = page_string[t];
+			}
 
+			else
+			{
+				pageArray[(++index) % page_frame] = page_string[t];
+				block++;
+			}
+			fault++;
+			flag_fault = 1;
+		}
+
+		//결과 과정 출력
+		printf("    %d\t", page_string[t]);
+		
+		for(int tmp=0; tmp < page_frame ; tmp++)
+		{
+			printf("%11d\t", pageArray[tmp]);
+		}
+
+		if(flag_fault) {
+			printf("\t   PAGE FAULT\n");
+			flag_fault=0;
+		}
+
+		else {
+			printf("\t            \n");
+			flag_fault=0;
+		}
+	}
+
+	printf("\nOptimal: \n");
+    printf("\tPage faults : %d\n", fault);
+    printf("\t       Hits : %d\n", 500 - fault);
+    printf("\t  Hit Ratio : %.2f%%\n", (500-fault)*100.0/500);
 
 }
 
+// 2번 메뉴 : FIFO
+void fifo(int page_string[500], int page_frame, int *pageArray)
+{
+	int index = -1;
+	int fault = 0, t;
+	int flag_fault=0;
 
+	printf("page_frame : %d\n", page_frame);
+	printf("-----------------------------------------");
+	printf("\n (2). FIFO \n");
+	printf("-----------------------------------------");
+	printf("\n참조스트림");
+
+	for(t=0; t < page_frame; t++) 
+	{
+		pageArray[t] = -1;
+		printf("  page_frame[%d] ", t);
+	}
+
+	printf(" 페이지 폴트\n");
+	for(t=0; t < 500; t++)
+	{
+		// hit일 때
+		if(check_index(page_frame, pageArray, page_string[t])) 
+			flag_fault=0;
+
+		//fault발생했을 때
+		else
+		{
+			pageArray[(++index) % page_frame] = page_string[t];
+			fault++;
+			flag_fault=1;
+		}
+
+		//결과 과정 출력
+		printf("    %d\t", page_string[t]);
+		for(int tmp=0; tmp < page_frame ; tmp++)
+			printf("%11d\t", pageArray[tmp]);
+
+		if(flag_fault) {
+			printf("\t   PAGE FAULT\n");
+			flag_fault=0;
+		}
+		else {
+			printf("\t            \n");
+			flag_fault=0;
+		}
+	}
+
+	printf("\nOptimal: \n");
+    printf("\tPage faults : %d\n", fault);
+    printf("\t       Hits : %d\n", 500 - fault);
+    printf("\t  Hit Ratio : %.2f%%\n", (500-fault)*100.0/500);
+}
