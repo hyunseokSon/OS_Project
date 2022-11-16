@@ -9,8 +9,9 @@ void random_reference_string(int page_string[]);
 void cleanBuffer(void);
 void menu_b(int, char fin[4]);
 int menu_c(int, char fin[4]);
-void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500], char *get_file_page_string[500]);
-
+void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500]);
+int check_index(int page_frame, int pageArray[], int n);
+void fifo(int page_string[500], int page_frame);
 
 int main()
 {
@@ -18,13 +19,12 @@ int main()
 	{
 		char menu[10] = {0}; // 알고리즘 시뮬레이터 선택
 		char *choiceMenu[10] = {0}; // 선택된 페이지 알고리즘
-		char deleteSpaceMenu[10] = {0}; // 공백 제거 시 문자가 있는지 확인을 위한 배열
+		int realMenu[10]={0};		// 선택된 알고리즘 메뉴
 		char fin[5]="2625";			// 20182625 입력시 프로그램 종료.
 		int i=0;
 		int flag=0;					// 조건을 충족하는 지 판별하기 위한 값.
 		int flagEight=0;			// A. 메뉴 선택 시 8. All이 있는지 판별하기 위한 값.
 		int page_string[500] = {0};	// 500개의 page string.
-		char *get_file_page_string[500]={0}; // 파일에서 받아올 page string.
 		int page_frame;				// page frame 개수
 		int input_data;				// 데이터 입력 방식
 		FILE *f1,*f2;				// 파일 입력 및 출력을 위한 파일포인터
@@ -40,35 +40,32 @@ int main()
 			break;
 		}
 
-		strcpy(deleteSpaceMenu, menu); // deleteSpaceMenu에 menu를 복사.
-		delete_space(deleteSpaceMenu); // 1~8 사이의 숫자 이외의 값이 들어 있는지 확인하기 위해 공백 제거.
-
-		for (int j=0; j < strlen(deleteSpaceMenu); j++)
-		{
-			if (deleteSpaceMenu[j] == '8')
-				flagEight=1;			// 메뉴 선택 시 8.All 을 선택했다면 flagEight=1.
-
-			else if (deleteSpaceMenu[j] >= '1' && deleteSpaceMenu[j] <= '8')
-				continue;
-			
-			else
-			{
-				printf("사용자 입력 에러 : 범위 안의 값(1~8)을 입력하세요.\n");
-				flag=1;
-				break;
-			}
-		}
-
 		char *ptr = strtok(menu, " "); //공백 문자열을 기준으로 문자열을 자른다.
 		while(ptr != NULL)
 		{
 
 			choiceMenu[i] = ptr; // 공백 이전의 문자열을 가져온다.
+			realMenu[i] = atoi(choiceMenu[i]);
+
+			if (realMenu[i] == 8)
+			{
+				flagEight = 1;
+				break;
+			}
+
+			if (realMenu[i] < 1 || realMenu[i] > 8) {
+				printf("\n\n");
+				printf("입력 에러 : 범위 사이의 값(1~8)을 입력하세요.\n");
+				flag=1;
+				break;
+			}
+
 			i++;
 			ptr = strtok(NULL, " ");
 			if (i > 3 && flagEight ==0) // 8.all 을 제외하고 최대 3개의 알고리즘을 선택할 수 있도록 조건 설정
 			{
-				printf("사용자 입력 에러 : 최대 3개의 값만 입력 가능합니다. 다시 시도하세요.\n");
+				printf("\n\n");
+				printf("입력 에러 : 최대 3개의 값만 입력 가능합니다. 다시 시도하세요.\n");
 				flag=1;
 				break;
 			}
@@ -78,16 +75,61 @@ int main()
 			continue;
 
 		menu_b(page_frame, fin); // B 메뉴 호출
-		input_data = menu_c(input_data, fin); // C 메뉴 호출
-		do_menu_c(f1, f2, input_data, page_string, get_file_page_string); // input_data에 따른 데이터 입력 방식 처리 함수 
+		int pageArray[page_frame]; // page frame
 
-/*
-			for (int i=0; i<10; i++) 
+		input_data = menu_c(input_data, fin); // C 메뉴 호출
+		do_menu_c(f1, f2, input_data, page_string); // input_data에 따른 데이터 입력 방식 처리 함수 
+
+		if (flagEight ==0) // 8번 메뉴를 선택하지 않았을 때
+		{
+			printf("\n\n");
+			printf("선택하신 메뉴는");
+			for (int i=0; i<10; i++)
 			{
-				if (choiceMenu[i] != NULL) // 문자열 포인터 배열의 요소가 NULL값이 아니라면
-					printf("%s\n", choiceMenu[i]);
+				if (realMenu[i] != '\0')
+					printf("%2d번", realMenu[i]);
 			}
-*/
+			printf("입니다!!\n");
+
+			for (int i=0; i<10; i++)
+			{
+				if (realMenu[i] == 1)
+				{
+					printf("메뉴 1번 선택..\n");
+				}
+				else if (realMenu[i] == 2)
+				{
+					// 2번 FIFO 선택 시
+					fifo(page_string, page_frame);
+				}
+				else if (realMenu[i] == 3)
+				{
+					printf("메뉴 3번 선택..\n");
+				}
+				else if (realMenu[i] == 4)
+				{
+					printf("메뉴 4번 선택..\n");
+				}
+				else if (realMenu[i] == 5)
+				{
+					printf("메뉴 5번 선택..\n");
+				}
+				else if (realMenu[i] == 6)
+				{
+					printf("메뉴 6번 선택..\n");
+				}
+				else if (realMenu[i] == 7)
+				{
+					printf("메뉴 7번 선택..\n");
+				}
+
+			}
+		}
+
+		else			  // 8번 메뉴를 선택했을 때
+		{
+			printf("축하합니다!! ALL 선택!!\n");
+		}
 
 	}// A메뉴에 대한 무한루프 종료.
 	return 0;
@@ -188,10 +230,9 @@ int menu_c(int input_data, char fin[4])
 }
 
 // 파일에서 랜덤하게 페이지 스트링 생성 및 가져옴.
-void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500], char *get_file_page_string[500]) {
+void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500]) {
 	// 데이터 입력 방식 1일 때.
 	// 즉, 랜덤하게 생성할 때
-	printf("do_menu_c의 input_data : %d\n", input_data);
 
 	if(input_data==1)
 	{
@@ -211,6 +252,7 @@ void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500], char *g
 	{
 		int temp = 0;
 		char tmp[2000] = {0};
+		char *get_file_page_string[500] = {0};
 
 		random_reference_string(page_string); // 랜덤으로 스트링 패턴 작성
 
@@ -247,3 +289,29 @@ void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500], char *g
 		fclose(f2);
 	}
 }
+
+// 페이지 프레임에 참조 스트링 값이 있는지 확인하는 함수
+int check_index(int page_frame, int pageArray[page_frame], int n)
+{
+	for(int k=0; k< page_frame ; k++)
+	{
+		if(pageArray[k] == n)
+			return 1;
+	}
+
+	return 0;
+}
+
+
+void fifo(int page_string[500], int page_frame)
+{
+	printf("-----------------------------------------");
+	printf("\n (2). FIFO \n");
+
+
+
+
+
+}
+
+
