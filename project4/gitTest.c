@@ -123,7 +123,13 @@ int main(){
     printf("\tPage faults : %d\n", faults);
     printf("\t       Hits : %d\n", n - faults);
     printf("\t  Hit Ratio : %.2f%%\n", (n-faults)*100.0/n);
-    
+
+	//////////////////////////////////
+	// m = 3, n = 500
+	// currPages = pageArray, pageRequests = page_string
+	// closestIndex = nearIndex
+	// extreme = checkMax
+
     faults = 0;
     int prevIndex[m];
     filledBlocks = 0;
