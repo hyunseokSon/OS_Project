@@ -127,6 +127,8 @@ int main(){
                 int j=0;
                 for(;j<m;j++){
                     prevIndex[j] = closestIndex(n, i, pageRequests, currPages[j], -1);
+					//
+					printf("prevIndex[%d] : %d\t", j, prevIndex[j]);
                 }
                 int farest = extreme(m, prevIndex, -1);
                 currPages[farest] = pageRequests[i];

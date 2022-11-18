@@ -15,6 +15,7 @@ int in(int size, int * array, int value){
 int closestIndex(int size, int currentLocation, int * array,  int value, int direction){
 	int i=currentLocation;
 	if(direction==-1){
+		printf("closetIndex의 I : %d\n", i);
 		for(i--;i>=0;i--){
 			if(array[i] == value)
 				return i;
@@ -64,27 +65,20 @@ void printArray(int size, int * array){
     printf("\n");
 }
 int main(){
-	int n=500;
+	int n=20;
 	int m=3;
 	printf("Enter number of page requests: ");	// 500
 	printf("Enter number of pages: ");			// 3
 	int currPages[3]={0};
-	int pageRequests[500]={0};
+	int pageRequests[20]={7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
 
 	printf("Enter the page requests separated by space: \n"); // page_string;
 	int i;
-	srand(time(NULL));
-	int random = 0;
-	for (int n=0; n<500; n++)
-	{
-		random = rand() % 30+1;
-		pageRequests[n] = random;
-	}
 
 	int faults=0;
 	int index=-1;
     for(i=0;i<3;i++) currPages[i] = -1;
-	for(i=0;i<500;i++){
+	for(i=0;i<20;i++){
 		if(in(m, currPages, pageRequests[i])) continue;
 		else{
 			currPages[(++index)%m] = pageRequests[i];
@@ -140,9 +134,12 @@ int main(){
         else{
             if(filledBlocks == m){
                 int j=0;
+					printf("i : %d", i);
                 for(;j<m;j++){
                     prevIndex[j] = closestIndex(n, i, pageRequests, currPages[j], -1);
+					printf("  prevIndex[%d] : %d  ", j, prevIndex[j]);
                 }
+				printf("\n");
                 int farest = extreme(m, prevIndex, -1);
                 currPages[farest] = pageRequests[i];
             }
