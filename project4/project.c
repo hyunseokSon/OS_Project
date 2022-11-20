@@ -37,6 +37,8 @@ void hitQueue(Queue *queue, int value); // LRU - hit시 처리 함수
 void lru(int page_string[500], int page_frame, Queue *queue, int *pageArray); // lru
 void lfu(int page_string[500], int page_frame, int *pageArray); // lfu
 void sc(int page_string[500], int page_frame, int *pageArray); // sc
+void ref_str_bit(int page_string[500], char r_s_b[500][7]);
+void esc(int page_string[500], int page_frame, int *pageArray, char r_s_b[500][7]); // esc
 
 int main()
 {
@@ -51,6 +53,7 @@ int main()
 		int flagEight = 0;			// A. 메뉴 선택 시 8. All이 있는지 판별하기 위한 값
 		int flagOpt = 0;			// 메뉴에서 Optimal 을 선택한 적이 있는지 판별하기 위한 값
 		int page_string[500] = {0}; // 500개의 page string
+		char refer_stringbit[500][7] = {0,}; // ESC - 참조비트가 적힌 참조 스트링 값이 저장됨.
 		int page_frame = 0;			// page frame 개수
 		int input_data;				// 데이터 입력 방식
 		FILE *f1, *f2, *fp, *fp2;	// 파일 입력 및 출력을 위한 파일포인터
@@ -103,6 +106,7 @@ int main()
 
 		input_data = menu_c(input_data, fin);		// C 메뉴 호출
 		do_menu_c(f1, f2, input_data, page_string); //데이터 입력 방식 처리 함수
+		ref_str_bit(page_string,refer_stringbit); 	// ESC 구현을 위해 참조 스트림 뒤에 문자붙임
 
 		//결과를 파일에 저장하기 위해 파일 생성.
 		fp = fopen("20182625.txt", "w+");
@@ -176,7 +180,7 @@ int main()
 					else if (realMenu[c] == 7)
 					{
 						// 7번 ESC 선택 시
-						printf("메뉴 7번 선택..\n");
+						esc(page_string, page_frame, pageArray, refer_stringbit);
 					}
 				}
 			}
@@ -226,7 +230,7 @@ int main()
 					else if (realMenu[c] == 7)
 					{
 						// 7번 ESC 선택 시
-						printf("메뉴 7번 선택..\n");
+						esc(page_string, page_frame, pageArray, refer_stringbit);
 					}
 				}
 				// OPTIMAL과 비교를 위해 1번 메뉴를 마지막에 수행하여 결과를 비교.
@@ -250,6 +254,7 @@ int main()
 			lru(page_string, page_frame, &queue, pageArray);
 			lfu(page_string, page_frame, pageArray);
 			sc(page_string, page_frame, pageArray);
+			esc(page_string, page_frame, pageArray, refer_stringbit);
 		}
 	} // A메뉴에 대한 무한루프 종료.
 	return 0;
@@ -1086,8 +1091,8 @@ void sc(int page_string[500], int page_frame, int *pageArray)
 		{
 			if(pageArray[c] == page_string[t])
 			{
+				//hit이면 flag_hit=1, 참조 비트 true로 변경.
 				second_chance[c] = true;
-				//hit이면 flag_hit=1
 				flag_hit = 1;
 			}
 		}
@@ -1097,15 +1102,18 @@ void sc(int page_string[500], int page_frame, int *pageArray)
 		{
 			while(true)
 			{
-				//false일 때
+				//대체할 page를 찾았다면
 				if(!second_chance[pointer])
 				{
+					//페이지 배열에 값을 써준다.
 					pageArray[pointer] = page_string[t];
+					//포인터는 다음 노드를 가리킨다.
 					pointer = (pointer+1) % page_frame;
 					break;
 				}
-				//순환하며 돌면서 포인터와 second_chance 비트를 바꿔준다.
+				//순환하며 돌면서 포인터와 second_chance 비트를 변경해준다.
 				second_chance[pointer] = false;
+				//다시 접근되지 않는 한 다음에 교체될 것이므로 포인터 변경.
 				pointer = (pointer+1) % page_frame;
 			}
 			fault++;
@@ -1145,16 +1153,195 @@ void sc(int page_string[500], int page_frame, int *pageArray)
     fclose(fp);
 }
 
+void ref_str_bit(int page_string[500], char r_s_b[500][7])
+{
+	int i;
+	char d[2] = {0};
 
+	for(i=0; i<500; i++)
+	{
+		// 참조 스트링의 숫자를 저장
+		sprintf(r_s_b[i], "%d", page_string[i]);
+		strcat(r_s_b[i], "(");
+		int t= rand() % 2;
+		if (t%2 ==0)
+			d[0] = 'R';
+		else
+			d[0] = 'W';
+		strcat(r_s_b[i], d);
+		strcat(r_s_b[i], ")");
+	}
+}
 
+// Enhanced Second chance
+void esc(int page_string[500], int page_frame, int *pageArray, char r_s_b[500][7]) // esc
+{
+	FILE *fp;				
+	int t,c;				// 반복문을 위한 변수
+	int flag_hit, fault=0;  // 
+	int flag_write;			// W비트라면 1, 아니면 0
+	int count;				// page_frame만큼 비교를 위한 변수.
+	int check_ref;			// refernce bit값 확인을 위한 변수.
+	int check_one;			// 1단계 검사(0,0)을 위한 변수.
+	int pointer=0, replace=0; // 포인터 및 페이지 폴트 시 대체되는 페이지 인덱스 변수
+	char *ret; // R인지 W인지 값 저장을 위한 배열
+	bool ref[page_frame]; // reference bit 값 저장하는 배열
+	bool mod[page_frame]; // modify bit 값 저장하는 배열
 
+	printf("-----------------------------------------");
+	printf("\n (7). ESC \n");
+	printf("-----------------------------------------");
+	printf("\n참조스트림");
+	
+	fp = fopen("20182625.txt", "a");
+	fprintf(fp,"-----------------------------------------");
+	fprintf(fp,"\n (7). ESC \n");
+	fprintf(fp,"-----------------------------------------");
+	fprintf(fp,"\n참조스트림");
 
+	for(t=0; t< page_frame; t++)
+	{
+		pageArray[t] = -1;
+		printf("  page_frame[%d] ", t); 
+		fprintf(fp,"  page_frame[%d] ", t); 
+		ref[t] = false; // 초기값 false로 세팅
+		mod[t] = false; // 초기값 false로 세팅
+	}
 
+	printf("\t페이지 폴트\n");
+	fprintf(fp,"\t페이지 폴트\n");
 
+	for (t=0; t<500; t++)
+	{
+		flag_hit = 0;
+		flag_write = 0;
+		
+		ret = strchr(r_s_b[t], 'W');
+		if (ret != NULL) // Write bit일 때
+		{
+			flag_write =1;
+		}
+		
+		for (c=0; c<page_frame; c++)
+		{
+			//hit라면
+			if(pageArray[c] == page_string[t])
+			{	
+				// 참조비트 true로 설정.
+				ref[c] = true;
+				flag_hit = 1;
+				// write bit라면
+				if (flag_write)
+				{
+					mod[c] = true;
+				}
+				// read bit라면
+				else
+				{
+					mod[c] = false;
+				}
+			}
+		}
 
+		//fault라면
+		if (!flag_hit)
+		{
+			check_ref = 1;
+			// reference bit가 false(0)인 값이 있는지 확인.
+			for (c=0; c<page_frame; c++)
+			{
+				if(ref[c] == false)
+				{
+					check_ref = 0;
+					break;
+				}
+			}
 
+			// 페이지 배열의 reference bit가 모두 1이라면 0으로 바꿔준다.
+			if (check_ref)
+			{
+				for (c=0; c<page_frame; c++)
+					ref[c] = false;
+			}
 
+			// 1단계. reference bit와 modify bit가 (0,0)이 있는지를 탐색.
+			check_one = 0;
+			for (count = 0; count < page_frame; count++)
+			{
+				//포인터를 지정해준다.
+				pointer = (replace+count) % page_frame;
+				//(0,0)인 비트를 찾는다.
+				if ((ref[pointer] == false) && (mod[pointer]==false))
+					break;
+			}
 
+			// for문에서 page_frame만큼 찾았는데 break 되지 않았을 때
+			if (count == page_frame)
+			{
+				check_one = 1;
+			}
 
+			// 2단계. (0,1) 비트를 찾는다.
+			if (check_one)
+			{
+				for (c=0; c<page_frame; c++)
+				{
+					pointer = (replace+c) % page_frame;
+					// (0,1) 비트를 찾았다면
+					if ((ref[pointer] == false) && (mod[pointer] == true))
+						break;
+					//else
+					//	ref[pointer]=false;
+				}
+			}
 
+			fault++;
+			replace = pointer;
+			ref[replace] = true; // 페이지 폴트 되므로 참조 비트 1
+			pageArray[replace] = page_string[t];
+			// write bit라면
+			if (flag_write)
+			{
+				mod[replace] = true;
+			}
+			// read bit라면
+			else
+			{
+				mod[replace] = false;
+			}
+			replace++;
+		}
 
+		//결과 과정 출력
+		printf("  %s\t", r_s_b[t]);
+		fprintf(fp,"  %s\t", r_s_b[t]);
+		
+		for (c=0; c<page_frame; c++)
+		{
+			printf("%9d(%d,%d)\t", pageArray[c], ref[c], mod[c]);
+			fprintf(fp,"%9d(%d,%d)\t", pageArray[c], ref[c], mod[c]);
+		}
+
+		if (flag_hit==0) {
+            printf("\tPAGE FAULT\n");
+            fprintf(fp,"\tPAGE FAULT\n");
+        }
+        else {
+            printf("\t          \n");
+            fprintf(fp,"\t          \n");
+        }
+	}
+
+	printf("\nEnhanced Second Chance: \n");
+    printf("\tPage faults : %d\n", fault);
+    printf("\t       Hits : %d\n", 500 - fault);
+    printf("\t  Hit Ratio : %.2f%%\n", (500 - fault) * 100.0 / 500);
+    printf("-----------------------------------------\n\n");
+
+    fprintf(fp,"\nEnhanced Second Chance: \n");
+    fprintf(fp,"\tPage faults : %d\n", fault);
+    fprintf(fp,"\t       Hits : %d\n", 500 - fault);
+    fprintf(fp,"\t  Hit Ratio : %.2f%%\n", (500 - fault) * 100.0 / 500);
+    fprintf(fp,"-----------------------------------------\n\n");
+	fclose(fp);
+}

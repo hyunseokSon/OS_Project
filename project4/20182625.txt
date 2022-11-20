@@ -1,516 +1,516 @@
 ---------참조 스트링---------
  14 17 28 26 24 26 17 13 10  2  3  8 21 20 24 17  1  7 23 17 12  9 28 10  3 21  3 14  8 26 30 13 13 19 30 28 14 17  2 23 10  4 22 30 15  8  9 15  6  1 24 17  2 21 27  4  3 21 17  2 16 16 15 28 27  6 17 10 14 18 25 16 13 16 15 28 15 15  4 21  8 19  7  9  9 25  4 12 15 20 13  1 27 19 20 23 17  7 25 30 16 11 15 29 18 22 18  3 28 13 23 27  2 21 27  2 16 30  5 30 11 10 22  8 28 12 22  6 10  8 28 17 18  4  7  6 17 24 30 15 29 22  3 30  4 30  1 19 29  6 11 10  7 24  9 26 27 22  2  6 30 29 15  9  2 21 14 11 15  5 25  5 18 27  4 22 18 26 10 17 23 12 18 29  6 18 25  2  9 26 30  8 16 14  9  9  4 22 19 10 27  5 14 14 24  9 27 11  5 29 19 19 10 28 18  7 15  4  1 24 21 30 23  6  5  1  6 30 15 17 10  3 13 15  8 28 16  5  9 12  3 19 30  4 17  9 11 23 12 11 16  2  2  1 29  6  1 27  5  7 13  6  9 17 13  9 15 28 13 15  1  7  3 30 10 11  9 12  4 12 22 11 14 15 11  4 20 12 30 17 10  4 14 19 21 26 27 27 15  1 11 15  7 13  7  8 16  7 20 19 18  3 29 23 10 10 27 21 13 18  7 22 14 13  2 26 30 20 22 15 20  2 21 18  6 19 18 21 25 29  1  5 23 30 27  2  1 15 23 13  3 21 26 16  3 20 11  3  9 24  9 21 25 21 30 22 10 17 13 26 15  5 30 30  4 27  1 26 11 23 30  5 14 26 12  8 15 14  2 15  7 10  5 23 23 27 15  2 13 19 19 20 23 19 19 19  7 19 14  9  4 14 14  9  1 25  8  7  9 10 21  7 19 18 30 11 14 14  4 18 24 23  7 16  3 17 26  9 28 10 17  1 15 22  1 15  9  8 21  9 17  3 15 28 20 14 30  3 19  4 21 12 18 19 20 12  6 15 20  3 16 28 25 30 20 25  6 20 24 26 28 11 29 12 30 10 18 29 13  6 24 25 10 11 13 21 22 10 27  3
 
-선택하신 메뉴는  4번입니다!!
+선택하신 메뉴는  7번입니다!!
 -----------------------------------------
- (4). LRU 
+ (7). ESC 
 -----------------------------------------
 참조스트림  page_frame[0]   page_frame[1]   page_frame[2] 	페이지 폴트
-    14	         14	         -1	         -1		PAGE FAULT
-    17	         14	         17	         -1		PAGE FAULT
-    28	         14	         17	         28		PAGE FAULT
-    26	         17	         28	         26		PAGE FAULT
-    24	         28	         26	         24		PAGE FAULT
-    26	         28	         24	         26		          
-    17	         24	         26	         17		PAGE FAULT
-    13	         26	         17	         13		PAGE FAULT
-    10	         17	         13	         10		PAGE FAULT
-    2	         13	         10	          2		PAGE FAULT
-    3	         10	          2	          3		PAGE FAULT
-    8	          2	          3	          8		PAGE FAULT
-    21	          3	          8	         21		PAGE FAULT
-    20	          8	         21	         20		PAGE FAULT
-    24	         21	         20	         24		PAGE FAULT
-    17	         20	         24	         17		PAGE FAULT
-    1	         24	         17	          1		PAGE FAULT
-    7	         17	          1	          7		PAGE FAULT
-    23	          1	          7	         23		PAGE FAULT
-    17	          7	         23	         17		PAGE FAULT
-    12	         23	         17	         12		PAGE FAULT
-    9	         17	         12	          9		PAGE FAULT
-    28	         12	          9	         28		PAGE FAULT
-    10	          9	         28	         10		PAGE FAULT
-    3	         28	         10	          3		PAGE FAULT
-    21	         10	          3	         21		PAGE FAULT
-    3	         10	         21	          3		          
-    14	         21	          3	         14		PAGE FAULT
-    8	          3	         14	          8		PAGE FAULT
-    26	         14	          8	         26		PAGE FAULT
-    30	          8	         26	         30		PAGE FAULT
-    13	         26	         30	         13		PAGE FAULT
-    13	         26	         30	         13		          
-    19	         30	         13	         19		PAGE FAULT
-    30	         13	         19	         30		          
-    28	         19	         30	         28		PAGE FAULT
-    14	         30	         28	         14		PAGE FAULT
-    17	         28	         14	         17		PAGE FAULT
-    2	         14	         17	          2		PAGE FAULT
-    23	         17	          2	         23		PAGE FAULT
-    10	          2	         23	         10		PAGE FAULT
-    4	         23	         10	          4		PAGE FAULT
-    22	         10	          4	         22		PAGE FAULT
-    30	          4	         22	         30		PAGE FAULT
-    15	         22	         30	         15		PAGE FAULT
-    8	         30	         15	          8		PAGE FAULT
-    9	         15	          8	          9		PAGE FAULT
-    15	          8	          9	         15		          
-    6	          9	         15	          6		PAGE FAULT
-    1	         15	          6	          1		PAGE FAULT
-    24	          6	          1	         24		PAGE FAULT
-    17	          1	         24	         17		PAGE FAULT
-    2	         24	         17	          2		PAGE FAULT
-    21	         17	          2	         21		PAGE FAULT
-    27	          2	         21	         27		PAGE FAULT
-    4	         21	         27	          4		PAGE FAULT
-    3	         27	          4	          3		PAGE FAULT
-    21	          4	          3	         21		PAGE FAULT
-    17	          3	         21	         17		PAGE FAULT
-    2	         21	         17	          2		PAGE FAULT
-    16	         17	          2	         16		PAGE FAULT
-    16	         17	          2	         16		          
-    15	          2	         16	         15		PAGE FAULT
-    28	         16	         15	         28		PAGE FAULT
-    27	         15	         28	         27		PAGE FAULT
-    6	         28	         27	          6		PAGE FAULT
-    17	         27	          6	         17		PAGE FAULT
-    10	          6	         17	         10		PAGE FAULT
-    14	         17	         10	         14		PAGE FAULT
-    18	         10	         14	         18		PAGE FAULT
-    25	         14	         18	         25		PAGE FAULT
-    16	         18	         25	         16		PAGE FAULT
-    13	         25	         16	         13		PAGE FAULT
-    16	         25	         13	         16		          
-    15	         13	         16	         15		PAGE FAULT
-    28	         16	         15	         28		PAGE FAULT
-    15	         16	         28	         15		          
-    15	         16	         28	         15		          
-    4	         28	         15	          4		PAGE FAULT
-    21	         15	          4	         21		PAGE FAULT
-    8	          4	         21	          8		PAGE FAULT
-    19	         21	          8	         19		PAGE FAULT
-    7	          8	         19	          7		PAGE FAULT
-    9	         19	          7	          9		PAGE FAULT
-    9	         19	          7	          9		          
-    25	          7	          9	         25		PAGE FAULT
-    4	          9	         25	          4		PAGE FAULT
-    12	         25	          4	         12		PAGE FAULT
-    15	          4	         12	         15		PAGE FAULT
-    20	         12	         15	         20		PAGE FAULT
-    13	         15	         20	         13		PAGE FAULT
-    1	         20	         13	          1		PAGE FAULT
-    27	         13	          1	         27		PAGE FAULT
-    19	          1	         27	         19		PAGE FAULT
-    20	         27	         19	         20		PAGE FAULT
-    23	         19	         20	         23		PAGE FAULT
-    17	         20	         23	         17		PAGE FAULT
-    7	         23	         17	          7		PAGE FAULT
-    25	         17	          7	         25		PAGE FAULT
-    30	          7	         25	         30		PAGE FAULT
-    16	         25	         30	         16		PAGE FAULT
-    11	         30	         16	         11		PAGE FAULT
-    15	         16	         11	         15		PAGE FAULT
-    29	         11	         15	         29		PAGE FAULT
-    18	         15	         29	         18		PAGE FAULT
-    22	         29	         18	         22		PAGE FAULT
-    18	         29	         22	         18		          
-    3	         22	         18	          3		PAGE FAULT
-    28	         18	          3	         28		PAGE FAULT
-    13	          3	         28	         13		PAGE FAULT
-    23	         28	         13	         23		PAGE FAULT
-    27	         13	         23	         27		PAGE FAULT
-    2	         23	         27	          2		PAGE FAULT
-    21	         27	          2	         21		PAGE FAULT
-    27	          2	         21	         27		          
-    2	         21	         27	          2		          
-    16	         27	          2	         16		PAGE FAULT
-    30	          2	         16	         30		PAGE FAULT
-    5	         16	         30	          5		PAGE FAULT
-    30	         16	          5	         30		          
-    11	          5	         30	         11		PAGE FAULT
-    10	         30	         11	         10		PAGE FAULT
-    22	         11	         10	         22		PAGE FAULT
-    8	         10	         22	          8		PAGE FAULT
-    28	         22	          8	         28		PAGE FAULT
-    12	          8	         28	         12		PAGE FAULT
-    22	         28	         12	         22		PAGE FAULT
-    6	         12	         22	          6		PAGE FAULT
-    10	         22	          6	         10		PAGE FAULT
-    8	          6	         10	          8		PAGE FAULT
-    28	         10	          8	         28		PAGE FAULT
-    17	          8	         28	         17		PAGE FAULT
-    18	         28	         17	         18		PAGE FAULT
-    4	         17	         18	          4		PAGE FAULT
-    7	         18	          4	          7		PAGE FAULT
-    6	          4	          7	          6		PAGE FAULT
-    17	          7	          6	         17		PAGE FAULT
-    24	          6	         17	         24		PAGE FAULT
-    30	         17	         24	         30		PAGE FAULT
-    15	         24	         30	         15		PAGE FAULT
-    29	         30	         15	         29		PAGE FAULT
-    22	         15	         29	         22		PAGE FAULT
-    3	         29	         22	          3		PAGE FAULT
-    30	         22	          3	         30		PAGE FAULT
-    4	          3	         30	          4		PAGE FAULT
-    30	          3	          4	         30		          
-    1	          4	         30	          1		PAGE FAULT
-    19	         30	          1	         19		PAGE FAULT
-    29	          1	         19	         29		PAGE FAULT
-    6	         19	         29	          6		PAGE FAULT
-    11	         29	          6	         11		PAGE FAULT
-    10	          6	         11	         10		PAGE FAULT
-    7	         11	         10	          7		PAGE FAULT
-    24	         10	          7	         24		PAGE FAULT
-    9	          7	         24	          9		PAGE FAULT
-    26	         24	          9	         26		PAGE FAULT
-    27	          9	         26	         27		PAGE FAULT
-    22	         26	         27	         22		PAGE FAULT
-    2	         27	         22	          2		PAGE FAULT
-    6	         22	          2	          6		PAGE FAULT
-    30	          2	          6	         30		PAGE FAULT
-    29	          6	         30	         29		PAGE FAULT
-    15	         30	         29	         15		PAGE FAULT
-    9	         29	         15	          9		PAGE FAULT
-    2	         15	          9	          2		PAGE FAULT
-    21	          9	          2	         21		PAGE FAULT
-    14	          2	         21	         14		PAGE FAULT
-    11	         21	         14	         11		PAGE FAULT
-    15	         14	         11	         15		PAGE FAULT
-    5	         11	         15	          5		PAGE FAULT
-    25	         15	          5	         25		PAGE FAULT
-    5	         15	         25	          5		          
-    18	         25	          5	         18		PAGE FAULT
-    27	          5	         18	         27		PAGE FAULT
-    4	         18	         27	          4		PAGE FAULT
-    22	         27	          4	         22		PAGE FAULT
-    18	          4	         22	         18		PAGE FAULT
-    26	         22	         18	         26		PAGE FAULT
-    10	         18	         26	         10		PAGE FAULT
-    17	         26	         10	         17		PAGE FAULT
-    23	         10	         17	         23		PAGE FAULT
-    12	         17	         23	         12		PAGE FAULT
-    18	         23	         12	         18		PAGE FAULT
-    29	         12	         18	         29		PAGE FAULT
-    6	         18	         29	          6		PAGE FAULT
-    18	         29	          6	         18		          
-    25	          6	         18	         25		PAGE FAULT
-    2	         18	         25	          2		PAGE FAULT
-    9	         25	          2	          9		PAGE FAULT
-    26	          2	          9	         26		PAGE FAULT
-    30	          9	         26	         30		PAGE FAULT
-    8	         26	         30	          8		PAGE FAULT
-    16	         30	          8	         16		PAGE FAULT
-    14	          8	         16	         14		PAGE FAULT
-    9	         16	         14	          9		PAGE FAULT
-    9	         16	         14	          9		          
-    4	         14	          9	          4		PAGE FAULT
-    22	          9	          4	         22		PAGE FAULT
-    19	          4	         22	         19		PAGE FAULT
-    10	         22	         19	         10		PAGE FAULT
-    27	         19	         10	         27		PAGE FAULT
-    5	         10	         27	          5		PAGE FAULT
-    14	         27	          5	         14		PAGE FAULT
-    14	         27	          5	         14		          
-    24	          5	         14	         24		PAGE FAULT
-    9	         14	         24	          9		PAGE FAULT
-    27	         24	          9	         27		PAGE FAULT
-    11	          9	         27	         11		PAGE FAULT
-    5	         27	         11	          5		PAGE FAULT
-    29	         11	          5	         29		PAGE FAULT
-    19	          5	         29	         19		PAGE FAULT
-    19	          5	         29	         19		          
-    10	         29	         19	         10		PAGE FAULT
-    28	         19	         10	         28		PAGE FAULT
-    18	         10	         28	         18		PAGE FAULT
-    7	         28	         18	          7		PAGE FAULT
-    15	         18	          7	         15		PAGE FAULT
-    4	          7	         15	          4		PAGE FAULT
-    1	         15	          4	          1		PAGE FAULT
-    24	          4	          1	         24		PAGE FAULT
-    21	          1	         24	         21		PAGE FAULT
-    30	         24	         21	         30		PAGE FAULT
-    23	         21	         30	         23		PAGE FAULT
-    6	         30	         23	          6		PAGE FAULT
-    5	         23	          6	          5		PAGE FAULT
-    1	          6	          5	          1		PAGE FAULT
-    6	          5	          1	          6		          
-    30	          1	          6	         30		PAGE FAULT
-    15	          6	         30	         15		PAGE FAULT
-    17	         30	         15	         17		PAGE FAULT
-    10	         15	         17	         10		PAGE FAULT
-    3	         17	         10	          3		PAGE FAULT
-    13	         10	          3	         13		PAGE FAULT
-    15	          3	         13	         15		PAGE FAULT
-    8	         13	         15	          8		PAGE FAULT
-    28	         15	          8	         28		PAGE FAULT
-    16	          8	         28	         16		PAGE FAULT
-    5	         28	         16	          5		PAGE FAULT
-    9	         16	          5	          9		PAGE FAULT
-    12	          5	          9	         12		PAGE FAULT
-    3	          9	         12	          3		PAGE FAULT
-    19	         12	          3	         19		PAGE FAULT
-    30	          3	         19	         30		PAGE FAULT
-    4	         19	         30	          4		PAGE FAULT
-    17	         30	          4	         17		PAGE FAULT
-    9	          4	         17	          9		PAGE FAULT
-    11	         17	          9	         11		PAGE FAULT
-    23	          9	         11	         23		PAGE FAULT
-    12	         11	         23	         12		PAGE FAULT
-    11	         23	         12	         11		          
-    16	         12	         11	         16		PAGE FAULT
-    2	         11	         16	          2		PAGE FAULT
-    2	         11	         16	          2		          
-    1	         16	          2	          1		PAGE FAULT
-    29	          2	          1	         29		PAGE FAULT
-    6	          1	         29	          6		PAGE FAULT
-    1	         29	          6	          1		          
-    27	          6	          1	         27		PAGE FAULT
-    5	          1	         27	          5		PAGE FAULT
-    7	         27	          5	          7		PAGE FAULT
-    13	          5	          7	         13		PAGE FAULT
-    6	          7	         13	          6		PAGE FAULT
-    9	         13	          6	          9		PAGE FAULT
-    17	          6	          9	         17		PAGE FAULT
-    13	          9	         17	         13		PAGE FAULT
-    9	         17	         13	          9		          
-    15	         13	          9	         15		PAGE FAULT
-    28	          9	         15	         28		PAGE FAULT
-    13	         15	         28	         13		PAGE FAULT
-    15	         28	         13	         15		          
-    1	         13	         15	          1		PAGE FAULT
-    7	         15	          1	          7		PAGE FAULT
-    3	          1	          7	          3		PAGE FAULT
-    30	          7	          3	         30		PAGE FAULT
-    10	          3	         30	         10		PAGE FAULT
-    11	         30	         10	         11		PAGE FAULT
-    9	         10	         11	          9		PAGE FAULT
-    12	         11	          9	         12		PAGE FAULT
-    4	          9	         12	          4		PAGE FAULT
-    12	          9	          4	         12		          
-    22	          4	         12	         22		PAGE FAULT
-    11	         12	         22	         11		PAGE FAULT
-    14	         22	         11	         14		PAGE FAULT
-    15	         11	         14	         15		PAGE FAULT
-    11	         14	         15	         11		          
-    4	         15	         11	          4		PAGE FAULT
-    20	         11	          4	         20		PAGE FAULT
-    12	          4	         20	         12		PAGE FAULT
-    30	         20	         12	         30		PAGE FAULT
-    17	         12	         30	         17		PAGE FAULT
-    10	         30	         17	         10		PAGE FAULT
-    4	         17	         10	          4		PAGE FAULT
-    14	         10	          4	         14		PAGE FAULT
-    19	          4	         14	         19		PAGE FAULT
-    21	         14	         19	         21		PAGE FAULT
-    26	         19	         21	         26		PAGE FAULT
-    27	         21	         26	         27		PAGE FAULT
-    27	         21	         26	         27		          
-    15	         26	         27	         15		PAGE FAULT
-    1	         27	         15	          1		PAGE FAULT
-    11	         15	          1	         11		PAGE FAULT
-    15	          1	         11	         15		          
-    7	         11	         15	          7		PAGE FAULT
-    13	         15	          7	         13		PAGE FAULT
-    7	         15	         13	          7		          
-    8	         13	          7	          8		PAGE FAULT
-    16	          7	          8	         16		PAGE FAULT
-    7	          8	         16	          7		          
-    20	         16	          7	         20		PAGE FAULT
-    19	          7	         20	         19		PAGE FAULT
-    18	         20	         19	         18		PAGE FAULT
-    3	         19	         18	          3		PAGE FAULT
-    29	         18	          3	         29		PAGE FAULT
-    23	          3	         29	         23		PAGE FAULT
-    10	         29	         23	         10		PAGE FAULT
-    10	         29	         23	         10		          
-    27	         23	         10	         27		PAGE FAULT
-    21	         10	         27	         21		PAGE FAULT
-    13	         27	         21	         13		PAGE FAULT
-    18	         21	         13	         18		PAGE FAULT
-    7	         13	         18	          7		PAGE FAULT
-    22	         18	          7	         22		PAGE FAULT
-    14	          7	         22	         14		PAGE FAULT
-    13	         22	         14	         13		PAGE FAULT
-    2	         14	         13	          2		PAGE FAULT
-    26	         13	          2	         26		PAGE FAULT
-    30	          2	         26	         30		PAGE FAULT
-    20	         26	         30	         20		PAGE FAULT
-    22	         30	         20	         22		PAGE FAULT
-    15	         20	         22	         15		PAGE FAULT
-    20	         22	         15	         20		          
-    2	         15	         20	          2		PAGE FAULT
-    21	         20	          2	         21		PAGE FAULT
-    18	          2	         21	         18		PAGE FAULT
-    6	         21	         18	          6		PAGE FAULT
-    19	         18	          6	         19		PAGE FAULT
-    18	          6	         19	         18		          
-    21	         19	         18	         21		PAGE FAULT
-    25	         18	         21	         25		PAGE FAULT
-    29	         21	         25	         29		PAGE FAULT
-    1	         25	         29	          1		PAGE FAULT
-    5	         29	          1	          5		PAGE FAULT
-    23	          1	          5	         23		PAGE FAULT
-    30	          5	         23	         30		PAGE FAULT
-    27	         23	         30	         27		PAGE FAULT
-    2	         30	         27	          2		PAGE FAULT
-    1	         27	          2	          1		PAGE FAULT
-    15	          2	          1	         15		PAGE FAULT
-    23	          1	         15	         23		PAGE FAULT
-    13	         15	         23	         13		PAGE FAULT
-    3	         23	         13	          3		PAGE FAULT
-    21	         13	          3	         21		PAGE FAULT
-    26	          3	         21	         26		PAGE FAULT
-    16	         21	         26	         16		PAGE FAULT
-    3	         26	         16	          3		PAGE FAULT
-    20	         16	          3	         20		PAGE FAULT
-    11	          3	         20	         11		PAGE FAULT
-    3	         20	         11	          3		          
-    9	         11	          3	          9		PAGE FAULT
-    24	          3	          9	         24		PAGE FAULT
-    9	          3	         24	          9		          
-    21	         24	          9	         21		PAGE FAULT
-    25	          9	         21	         25		PAGE FAULT
-    21	          9	         25	         21		          
-    30	         25	         21	         30		PAGE FAULT
-    22	         21	         30	         22		PAGE FAULT
-    10	         30	         22	         10		PAGE FAULT
-    17	         22	         10	         17		PAGE FAULT
-    13	         10	         17	         13		PAGE FAULT
-    26	         17	         13	         26		PAGE FAULT
-    15	         13	         26	         15		PAGE FAULT
-    5	         26	         15	          5		PAGE FAULT
-    30	         15	          5	         30		PAGE FAULT
-    30	         15	          5	         30		          
-    4	          5	         30	          4		PAGE FAULT
-    27	         30	          4	         27		PAGE FAULT
-    1	          4	         27	          1		PAGE FAULT
-    26	         27	          1	         26		PAGE FAULT
-    11	          1	         26	         11		PAGE FAULT
-    23	         26	         11	         23		PAGE FAULT
-    30	         11	         23	         30		PAGE FAULT
-    5	         23	         30	          5		PAGE FAULT
-    14	         30	          5	         14		PAGE FAULT
-    26	          5	         14	         26		PAGE FAULT
-    12	         14	         26	         12		PAGE FAULT
-    8	         26	         12	          8		PAGE FAULT
-    15	         12	          8	         15		PAGE FAULT
-    14	          8	         15	         14		PAGE FAULT
-    2	         15	         14	          2		PAGE FAULT
-    15	         14	          2	         15		          
-    7	          2	         15	          7		PAGE FAULT
-    10	         15	          7	         10		PAGE FAULT
-    5	          7	         10	          5		PAGE FAULT
-    23	         10	          5	         23		PAGE FAULT
-    23	         10	          5	         23		          
-    27	          5	         23	         27		PAGE FAULT
-    15	         23	         27	         15		PAGE FAULT
-    2	         27	         15	          2		PAGE FAULT
-    13	         15	          2	         13		PAGE FAULT
-    19	          2	         13	         19		PAGE FAULT
-    19	          2	         13	         19		          
-    20	         13	         19	         20		PAGE FAULT
-    23	         19	         20	         23		PAGE FAULT
-    19	         20	         23	         19		          
-    19	         20	         23	         19		          
-    19	         20	         23	         19		          
-    7	         23	         19	          7		PAGE FAULT
-    19	         23	          7	         19		          
-    14	          7	         19	         14		PAGE FAULT
-    9	         19	         14	          9		PAGE FAULT
-    4	         14	          9	          4		PAGE FAULT
-    14	          9	          4	         14		          
-    14	          9	          4	         14		          
-    9	          4	         14	          9		          
-    1	         14	          9	          1		PAGE FAULT
-    25	          9	          1	         25		PAGE FAULT
-    8	          1	         25	          8		PAGE FAULT
-    7	         25	          8	          7		PAGE FAULT
-    9	          8	          7	          9		PAGE FAULT
-    10	          7	          9	         10		PAGE FAULT
-    21	          9	         10	         21		PAGE FAULT
-    7	         10	         21	          7		PAGE FAULT
-    19	         21	          7	         19		PAGE FAULT
-    18	          7	         19	         18		PAGE FAULT
-    30	         19	         18	         30		PAGE FAULT
-    11	         18	         30	         11		PAGE FAULT
-    14	         30	         11	         14		PAGE FAULT
-    14	         30	         11	         14		          
-    4	         11	         14	          4		PAGE FAULT
-    18	         14	          4	         18		PAGE FAULT
-    24	          4	         18	         24		PAGE FAULT
-    23	         18	         24	         23		PAGE FAULT
-    7	         24	         23	          7		PAGE FAULT
-    16	         23	          7	         16		PAGE FAULT
-    3	          7	         16	          3		PAGE FAULT
-    17	         16	          3	         17		PAGE FAULT
-    26	          3	         17	         26		PAGE FAULT
-    9	         17	         26	          9		PAGE FAULT
-    28	         26	          9	         28		PAGE FAULT
-    10	          9	         28	         10		PAGE FAULT
-    17	         28	         10	         17		PAGE FAULT
-    1	         10	         17	          1		PAGE FAULT
-    15	         17	          1	         15		PAGE FAULT
-    22	          1	         15	         22		PAGE FAULT
-    1	         15	         22	          1		          
-    15	         22	          1	         15		          
-    9	          1	         15	          9		PAGE FAULT
-    8	         15	          9	          8		PAGE FAULT
-    21	          9	          8	         21		PAGE FAULT
-    9	          8	         21	          9		          
-    17	         21	          9	         17		PAGE FAULT
-    3	          9	         17	          3		PAGE FAULT
-    15	         17	          3	         15		PAGE FAULT
-    28	          3	         15	         28		PAGE FAULT
-    20	         15	         28	         20		PAGE FAULT
-    14	         28	         20	         14		PAGE FAULT
-    30	         20	         14	         30		PAGE FAULT
-    3	         14	         30	          3		PAGE FAULT
-    19	         30	          3	         19		PAGE FAULT
-    4	          3	         19	          4		PAGE FAULT
-    21	         19	          4	         21		PAGE FAULT
-    12	          4	         21	         12		PAGE FAULT
-    18	         21	         12	         18		PAGE FAULT
-    19	         12	         18	         19		PAGE FAULT
-    20	         18	         19	         20		PAGE FAULT
-    12	         19	         20	         12		PAGE FAULT
-    6	         20	         12	          6		PAGE FAULT
-    15	         12	          6	         15		PAGE FAULT
-    20	          6	         15	         20		PAGE FAULT
-    3	         15	         20	          3		PAGE FAULT
-    16	         20	          3	         16		PAGE FAULT
-    28	          3	         16	         28		PAGE FAULT
-    25	         16	         28	         25		PAGE FAULT
-    30	         28	         25	         30		PAGE FAULT
-    20	         25	         30	         20		PAGE FAULT
-    25	         30	         20	         25		          
-    6	         20	         25	          6		PAGE FAULT
-    20	         25	          6	         20		          
-    24	          6	         20	         24		PAGE FAULT
-    26	         20	         24	         26		PAGE FAULT
-    28	         24	         26	         28		PAGE FAULT
-    11	         26	         28	         11		PAGE FAULT
-    29	         28	         11	         29		PAGE FAULT
-    12	         11	         29	         12		PAGE FAULT
-    30	         29	         12	         30		PAGE FAULT
-    10	         12	         30	         10		PAGE FAULT
-    18	         30	         10	         18		PAGE FAULT
-    29	         10	         18	         29		PAGE FAULT
-    13	         18	         29	         13		PAGE FAULT
-    6	         29	         13	          6		PAGE FAULT
-    24	         13	          6	         24		PAGE FAULT
-    25	          6	         24	         25		PAGE FAULT
-    10	         24	         25	         10		PAGE FAULT
-    11	         25	         10	         11		PAGE FAULT
-    13	         10	         11	         13		PAGE FAULT
-    21	         11	         13	         21		PAGE FAULT
-    22	         13	         21	         22		PAGE FAULT
-    10	         21	         22	         10		PAGE FAULT
-    27	         22	         10	         27		PAGE FAULT
-    3	         10	         27	          3		PAGE FAULT
+  14(W)	       14(1,1)	       -1(0,0)	       -1(0,0)		PAGE FAULT
+  17(R)	       14(1,1)	       17(1,0)	       -1(0,0)		PAGE FAULT
+  28(R)	       14(1,1)	       17(1,0)	       28(1,0)		PAGE FAULT
+  26(W)	       14(0,1)	       26(1,1)	       28(0,0)		PAGE FAULT
+  24(W)	       14(0,1)	       26(1,1)	       24(1,1)		PAGE FAULT
+  26(W)	       14(0,1)	       26(1,1)	       24(1,1)		          
+  17(W)	       17(1,1)	       26(1,1)	       24(1,1)		PAGE FAULT
+  13(W)	       17(0,1)	       13(1,1)	       24(0,1)		PAGE FAULT
+  10(R)	       17(0,1)	       13(1,1)	       10(1,0)		PAGE FAULT
+  2(W)	        2(1,1)	       13(1,1)	       10(1,0)		PAGE FAULT
+  3(R)	        2(0,1)	       13(0,1)	        3(1,0)		PAGE FAULT
+  8(W)	        8(1,1)	       13(0,1)	        3(1,0)		PAGE FAULT
+  21(W)	        8(1,1)	       21(1,1)	        3(1,0)		PAGE FAULT
+  20(R)	        8(0,1)	       21(0,1)	       20(1,0)		PAGE FAULT
+  24(R)	       24(1,0)	       21(0,1)	       20(1,0)		PAGE FAULT
+  17(R)	       24(1,0)	       17(1,0)	       20(1,0)		PAGE FAULT
+  1(R)	       24(0,0)	       17(0,0)	        1(1,0)		PAGE FAULT
+  7(W)	        7(1,1)	       17(0,0)	        1(1,0)		PAGE FAULT
+  23(R)	        7(1,1)	       23(1,0)	        1(1,0)		PAGE FAULT
+  17(R)	        7(0,1)	       23(0,0)	       17(1,0)		PAGE FAULT
+  12(W)	        7(0,1)	       12(1,1)	       17(1,0)		PAGE FAULT
+  9(R)	        9(1,0)	       12(1,1)	       17(1,0)		PAGE FAULT
+  28(R)	        9(0,0)	       12(0,1)	       28(1,0)		PAGE FAULT
+  10(R)	       10(1,0)	       12(0,1)	       28(1,0)		PAGE FAULT
+  3(R)	       10(1,0)	        3(1,0)	       28(1,0)		PAGE FAULT
+  21(R)	       10(0,0)	        3(0,0)	       21(1,0)		PAGE FAULT
+  3(R)	       10(0,0)	        3(1,0)	       21(1,0)		          
+  14(R)	       14(1,0)	        3(1,0)	       21(1,0)		PAGE FAULT
+  8(R)	       14(0,0)	        8(1,0)	       21(0,0)		PAGE FAULT
+  26(R)	       14(0,0)	        8(1,0)	       26(1,0)		PAGE FAULT
+  30(R)	       30(1,0)	        8(1,0)	       26(1,0)		PAGE FAULT
+  13(W)	       30(0,0)	       13(1,1)	       26(0,0)		PAGE FAULT
+  13(R)	       30(0,0)	       13(1,0)	       26(0,0)		          
+  19(R)	       30(0,0)	       13(1,0)	       19(1,0)		PAGE FAULT
+  30(W)	       30(1,1)	       13(1,0)	       19(1,0)		          
+  28(R)	       30(0,1)	       28(1,0)	       19(0,0)		PAGE FAULT
+  14(W)	       30(0,1)	       28(1,0)	       14(1,1)		PAGE FAULT
+  17(R)	       17(1,0)	       28(1,0)	       14(1,1)		PAGE FAULT
+  2(W)	       17(0,0)	        2(1,1)	       14(0,1)		PAGE FAULT
+  23(W)	       23(1,1)	        2(1,1)	       14(0,1)		PAGE FAULT
+  10(W)	       23(1,1)	        2(1,1)	       10(1,1)		PAGE FAULT
+  4(W)	        4(1,1)	        2(0,1)	       10(0,1)		PAGE FAULT
+  22(R)	        4(1,1)	       22(1,0)	       10(0,1)		PAGE FAULT
+  30(R)	        4(1,1)	       22(1,0)	       30(1,0)		PAGE FAULT
+  15(R)	        4(0,1)	       15(1,0)	       30(0,0)		PAGE FAULT
+  8(W)	        4(0,1)	       15(1,0)	        8(1,1)		PAGE FAULT
+  9(R)	        9(1,0)	       15(1,0)	        8(1,1)		PAGE FAULT
+  15(R)	        9(1,0)	       15(1,0)	        8(1,1)		          
+  6(R)	        9(0,0)	        6(1,0)	        8(0,1)		PAGE FAULT
+  1(W)	        1(1,1)	        6(1,0)	        8(0,1)		PAGE FAULT
+  24(R)	        1(1,1)	        6(1,0)	       24(1,0)		PAGE FAULT
+  17(W)	        1(0,1)	       17(1,1)	       24(0,0)		PAGE FAULT
+  2(W)	        1(0,1)	       17(1,1)	        2(1,1)		PAGE FAULT
+  21(R)	       21(1,0)	       17(1,1)	        2(1,1)		PAGE FAULT
+  27(W)	       27(1,1)	       17(0,1)	        2(0,1)		PAGE FAULT
+  4(W)	       27(1,1)	        4(1,1)	        2(0,1)		PAGE FAULT
+  3(R)	       27(1,1)	        4(1,1)	        3(1,0)		PAGE FAULT
+  21(W)	       27(0,1)	        4(0,1)	       21(1,1)		PAGE FAULT
+  17(W)	       17(1,1)	        4(0,1)	       21(1,1)		PAGE FAULT
+  2(R)	       17(1,1)	        2(1,0)	       21(1,1)		PAGE FAULT
+  16(R)	       17(0,1)	       16(1,0)	       21(0,1)		PAGE FAULT
+  16(R)	       17(0,1)	       16(1,0)	       21(0,1)		          
+  15(R)	       17(0,1)	       16(1,0)	       15(1,0)		PAGE FAULT
+  28(R)	       28(1,0)	       16(1,0)	       15(1,0)		PAGE FAULT
+  27(R)	       28(0,0)	       27(1,0)	       15(0,0)		PAGE FAULT
+  6(W)	       28(0,0)	       27(1,0)	        6(1,1)		PAGE FAULT
+  17(R)	       17(1,0)	       27(1,0)	        6(1,1)		PAGE FAULT
+  10(R)	       17(0,0)	       10(1,0)	        6(0,1)		PAGE FAULT
+  14(W)	       14(1,1)	       10(1,0)	        6(0,1)		PAGE FAULT
+  18(W)	       14(1,1)	       10(1,0)	       18(1,1)		PAGE FAULT
+  25(W)	       14(0,1)	       25(1,1)	       18(0,1)		PAGE FAULT
+  16(W)	       14(0,1)	       25(1,1)	       16(1,1)		PAGE FAULT
+  13(W)	       13(1,1)	       25(1,1)	       16(1,1)		PAGE FAULT
+  16(R)	       13(1,1)	       25(1,1)	       16(1,0)		          
+  15(W)	       13(0,1)	       25(0,1)	       15(1,1)		PAGE FAULT
+  28(W)	       28(1,1)	       25(0,1)	       15(1,1)		PAGE FAULT
+  15(W)	       28(1,1)	       25(0,1)	       15(1,1)		          
+  15(R)	       28(1,1)	       25(0,1)	       15(1,0)		          
+  4(W)	       28(1,1)	        4(1,1)	       15(1,0)		PAGE FAULT
+  21(W)	       28(0,1)	        4(0,1)	       21(1,1)		PAGE FAULT
+  8(W)	        8(1,1)	        4(0,1)	       21(1,1)		PAGE FAULT
+  19(W)	        8(1,1)	       19(1,1)	       21(1,1)		PAGE FAULT
+  7(W)	        8(0,1)	       19(0,1)	        7(1,1)		PAGE FAULT
+  9(R)	        9(1,0)	       19(0,1)	        7(1,1)		PAGE FAULT
+  9(W)	        9(1,1)	       19(0,1)	        7(1,1)		          
+  25(R)	        9(1,1)	       25(1,0)	        7(1,1)		PAGE FAULT
+  4(W)	        9(0,1)	        4(1,1)	        7(0,1)		PAGE FAULT
+  12(W)	        9(0,1)	        4(1,1)	       12(1,1)		PAGE FAULT
+  15(R)	       15(1,0)	        4(1,1)	       12(1,1)		PAGE FAULT
+  20(W)	       20(1,1)	        4(0,1)	       12(0,1)		PAGE FAULT
+  13(R)	       20(1,1)	       13(1,0)	       12(0,1)		PAGE FAULT
+  1(R)	       20(1,1)	       13(1,0)	        1(1,0)		PAGE FAULT
+  27(W)	       20(0,1)	       27(1,1)	        1(0,0)		PAGE FAULT
+  19(R)	       20(0,1)	       27(1,1)	       19(1,0)		PAGE FAULT
+  20(R)	       20(1,0)	       27(1,1)	       19(1,0)		          
+  23(W)	       23(1,1)	       27(0,1)	       19(0,0)		PAGE FAULT
+  17(W)	       23(1,1)	       27(0,1)	       17(1,1)		PAGE FAULT
+  7(W)	       23(1,1)	        7(1,1)	       17(1,1)		PAGE FAULT
+  25(W)	       23(0,1)	        7(0,1)	       25(1,1)		PAGE FAULT
+  30(R)	       30(1,0)	        7(0,1)	       25(1,1)		PAGE FAULT
+  16(R)	       30(1,0)	       16(1,0)	       25(1,1)		PAGE FAULT
+  11(W)	       11(1,1)	       16(0,0)	       25(0,1)		PAGE FAULT
+  15(W)	       11(1,1)	       15(1,1)	       25(0,1)		PAGE FAULT
+  29(W)	       11(1,1)	       15(1,1)	       29(1,1)		PAGE FAULT
+  18(W)	       18(1,1)	       15(0,1)	       29(0,1)		PAGE FAULT
+  22(W)	       18(1,1)	       22(1,1)	       29(0,1)		PAGE FAULT
+  18(R)	       18(1,0)	       22(1,1)	       29(0,1)		          
+  3(R)	       18(1,0)	       22(1,1)	        3(1,0)		PAGE FAULT
+  28(W)	       28(1,1)	       22(0,1)	        3(0,0)		PAGE FAULT
+  13(W)	       28(1,1)	       22(0,1)	       13(1,1)		PAGE FAULT
+  23(W)	       28(1,1)	       23(1,1)	       13(1,1)		PAGE FAULT
+  27(R)	       28(0,1)	       23(0,1)	       27(1,0)		PAGE FAULT
+  2(R)	        2(1,0)	       23(0,1)	       27(1,0)		PAGE FAULT
+  21(R)	        2(1,0)	       21(1,0)	       27(1,0)		PAGE FAULT
+  27(R)	        2(1,0)	       21(1,0)	       27(1,0)		          
+  2(W)	        2(1,1)	       21(1,0)	       27(1,0)		          
+  16(W)	        2(0,1)	       21(0,0)	       16(1,1)		PAGE FAULT
+  30(W)	        2(0,1)	       30(1,1)	       16(1,1)		PAGE FAULT
+  5(W)	        5(1,1)	       30(1,1)	       16(1,1)		PAGE FAULT
+  30(W)	        5(1,1)	       30(1,1)	       16(1,1)		          
+  11(R)	        5(0,1)	       11(1,0)	       16(0,1)		PAGE FAULT
+  10(W)	        5(0,1)	       11(1,0)	       10(1,1)		PAGE FAULT
+  22(W)	       22(1,1)	       11(1,0)	       10(1,1)		PAGE FAULT
+  8(W)	       22(0,1)	        8(1,1)	       10(0,1)		PAGE FAULT
+  28(W)	       22(0,1)	        8(1,1)	       28(1,1)		PAGE FAULT
+  12(W)	       12(1,1)	        8(1,1)	       28(1,1)		PAGE FAULT
+  22(W)	       12(0,1)	       22(1,1)	       28(0,1)		PAGE FAULT
+  6(R)	       12(0,1)	       22(1,1)	        6(1,0)		PAGE FAULT
+  10(R)	       10(1,0)	       22(1,1)	        6(1,0)		PAGE FAULT
+  8(R)	       10(0,0)	       22(0,1)	        8(1,0)		PAGE FAULT
+  28(R)	       28(1,0)	       22(0,1)	        8(1,0)		PAGE FAULT
+  17(W)	       28(1,0)	       17(1,1)	        8(1,0)		PAGE FAULT
+  18(W)	       28(0,0)	       17(0,1)	       18(1,1)		PAGE FAULT
+  4(R)	        4(1,0)	       17(0,1)	       18(1,1)		PAGE FAULT
+  7(R)	        4(1,0)	        7(1,0)	       18(1,1)		PAGE FAULT
+  6(R)	        6(1,0)	        7(0,0)	       18(0,1)		PAGE FAULT
+  17(W)	        6(1,0)	       17(1,1)	       18(0,1)		PAGE FAULT
+  24(W)	        6(1,0)	       17(1,1)	       24(1,1)		PAGE FAULT
+  30(R)	       30(1,0)	       17(0,1)	       24(0,1)		PAGE FAULT
+  15(R)	       30(1,0)	       15(1,0)	       24(0,1)		PAGE FAULT
+  29(R)	       30(1,0)	       15(1,0)	       29(1,0)		PAGE FAULT
+  22(R)	       22(1,0)	       15(0,0)	       29(0,0)		PAGE FAULT
+  3(R)	       22(1,0)	        3(1,0)	       29(0,0)		PAGE FAULT
+  30(W)	       22(1,0)	        3(1,0)	       30(1,1)		PAGE FAULT
+  4(R)	        4(1,0)	        3(0,0)	       30(0,1)		PAGE FAULT
+  30(R)	        4(1,0)	        3(0,0)	       30(1,0)		          
+  1(R)	        4(1,0)	        1(1,0)	       30(1,0)		PAGE FAULT
+  19(W)	        4(0,0)	        1(0,0)	       19(1,1)		PAGE FAULT
+  29(W)	       29(1,1)	        1(0,0)	       19(1,1)		PAGE FAULT
+  6(W)	       29(1,1)	        6(1,1)	       19(1,1)		PAGE FAULT
+  11(R)	       29(0,1)	        6(0,1)	       11(1,0)		PAGE FAULT
+  10(R)	       10(1,0)	        6(0,1)	       11(1,0)		PAGE FAULT
+  7(R)	       10(1,0)	        7(1,0)	       11(1,0)		PAGE FAULT
+  24(W)	       10(0,0)	        7(0,0)	       24(1,1)		PAGE FAULT
+  9(W)	        9(1,1)	        7(0,0)	       24(1,1)		PAGE FAULT
+  26(W)	        9(1,1)	       26(1,1)	       24(1,1)		PAGE FAULT
+  27(W)	        9(0,1)	       26(0,1)	       27(1,1)		PAGE FAULT
+  22(R)	       22(1,0)	       26(0,1)	       27(1,1)		PAGE FAULT
+  2(W)	       22(1,0)	        2(1,1)	       27(1,1)		PAGE FAULT
+  6(W)	        6(1,1)	        2(0,1)	       27(0,1)		PAGE FAULT
+  30(W)	        6(1,1)	       30(1,1)	       27(0,1)		PAGE FAULT
+  29(R)	        6(1,1)	       30(1,1)	       29(1,0)		PAGE FAULT
+  15(R)	        6(0,1)	       30(0,1)	       15(1,0)		PAGE FAULT
+  9(R)	        9(1,0)	       30(0,1)	       15(1,0)		PAGE FAULT
+  2(R)	        9(1,0)	        2(1,0)	       15(1,0)		PAGE FAULT
+  21(W)	        9(0,0)	        2(0,0)	       21(1,1)		PAGE FAULT
+  14(W)	       14(1,1)	        2(0,0)	       21(1,1)		PAGE FAULT
+  11(W)	       14(1,1)	       11(1,1)	       21(1,1)		PAGE FAULT
+  15(R)	       14(0,1)	       11(0,1)	       15(1,0)		PAGE FAULT
+  5(W)	        5(1,1)	       11(0,1)	       15(1,0)		PAGE FAULT
+  25(W)	        5(1,1)	       25(1,1)	       15(1,0)		PAGE FAULT
+  5(R)	        5(1,0)	       25(1,1)	       15(1,0)		          
+  18(W)	        5(0,0)	       25(0,1)	       18(1,1)		PAGE FAULT
+  27(W)	       27(1,1)	       25(0,1)	       18(1,1)		PAGE FAULT
+  4(W)	       27(1,1)	        4(1,1)	       18(1,1)		PAGE FAULT
+  22(R)	       27(0,1)	        4(0,1)	       22(1,0)		PAGE FAULT
+  18(W)	       18(1,1)	        4(0,1)	       22(1,0)		PAGE FAULT
+  26(R)	       18(1,1)	       26(1,0)	       22(1,0)		PAGE FAULT
+  10(W)	       18(0,1)	       26(0,0)	       10(1,1)		PAGE FAULT
+  17(R)	       18(0,1)	       17(1,0)	       10(1,1)		PAGE FAULT
+  23(W)	       23(1,1)	       17(1,0)	       10(1,1)		PAGE FAULT
+  12(R)	       23(0,1)	       12(1,0)	       10(0,1)		PAGE FAULT
+  18(R)	       23(0,1)	       12(1,0)	       18(1,0)		PAGE FAULT
+  29(R)	       29(1,0)	       12(1,0)	       18(1,0)		PAGE FAULT
+  6(W)	       29(0,0)	        6(1,1)	       18(0,0)		PAGE FAULT
+  18(R)	       29(0,0)	        6(1,1)	       18(1,0)		          
+  25(W)	       25(1,1)	        6(1,1)	       18(1,0)		PAGE FAULT
+  2(R)	       25(0,1)	        6(0,1)	        2(1,0)		PAGE FAULT
+  9(R)	        9(1,0)	        6(0,1)	        2(1,0)		PAGE FAULT
+  26(W)	        9(1,0)	       26(1,1)	        2(1,0)		PAGE FAULT
+  30(R)	        9(0,0)	       26(0,1)	       30(1,0)		PAGE FAULT
+  8(W)	        8(1,1)	       26(0,1)	       30(1,0)		PAGE FAULT
+  16(W)	        8(1,1)	       16(1,1)	       30(1,0)		PAGE FAULT
+  14(R)	        8(0,1)	       16(0,1)	       14(1,0)		PAGE FAULT
+  9(R)	        9(1,0)	       16(0,1)	       14(1,0)		PAGE FAULT
+  9(W)	        9(1,1)	       16(0,1)	       14(1,0)		          
+  4(W)	        9(1,1)	        4(1,1)	       14(1,0)		PAGE FAULT
+  22(W)	        9(0,1)	        4(0,1)	       22(1,1)		PAGE FAULT
+  19(R)	       19(1,0)	        4(0,1)	       22(1,1)		PAGE FAULT
+  10(W)	       19(1,0)	       10(1,1)	       22(1,1)		PAGE FAULT
+  27(R)	       27(1,0)	       10(0,1)	       22(0,1)		PAGE FAULT
+  5(W)	       27(1,0)	        5(1,1)	       22(0,1)		PAGE FAULT
+  14(R)	       27(1,0)	        5(1,1)	       14(1,0)		PAGE FAULT
+  14(R)	       27(1,0)	        5(1,1)	       14(1,0)		          
+  24(R)	       24(1,0)	        5(0,1)	       14(0,0)		PAGE FAULT
+  9(W)	       24(1,0)	        5(0,1)	        9(1,1)		PAGE FAULT
+  27(R)	       24(1,0)	       27(1,0)	        9(1,1)		PAGE FAULT
+  11(W)	       11(1,1)	       27(0,0)	        9(0,1)		PAGE FAULT
+  5(W)	       11(1,1)	        5(1,1)	        9(0,1)		PAGE FAULT
+  29(W)	       11(1,1)	        5(1,1)	       29(1,1)		PAGE FAULT
+  19(W)	       19(1,1)	        5(0,1)	       29(0,1)		PAGE FAULT
+  19(W)	       19(1,1)	        5(0,1)	       29(0,1)		          
+  10(W)	       19(1,1)	       10(1,1)	       29(0,1)		PAGE FAULT
+  28(R)	       19(1,1)	       10(1,1)	       28(1,0)		PAGE FAULT
+  18(W)	       19(0,1)	       10(0,1)	       18(1,1)		PAGE FAULT
+  7(W)	        7(1,1)	       10(0,1)	       18(1,1)		PAGE FAULT
+  15(R)	        7(1,1)	       15(1,0)	       18(1,1)		PAGE FAULT
+  4(R)	        7(0,1)	        4(1,0)	       18(0,1)		PAGE FAULT
+  1(W)	        7(0,1)	        4(1,0)	        1(1,1)		PAGE FAULT
+  24(R)	       24(1,0)	        4(1,0)	        1(1,1)		PAGE FAULT
+  21(W)	       24(0,0)	       21(1,1)	        1(0,1)		PAGE FAULT
+  30(W)	       30(1,1)	       21(1,1)	        1(0,1)		PAGE FAULT
+  23(R)	       30(1,1)	       21(1,1)	       23(1,0)		PAGE FAULT
+  6(R)	       30(0,1)	       21(0,1)	        6(1,0)		PAGE FAULT
+  5(R)	        5(1,0)	       21(0,1)	        6(1,0)		PAGE FAULT
+  1(R)	        5(1,0)	        1(1,0)	        6(1,0)		PAGE FAULT
+  6(W)	        5(1,0)	        1(1,0)	        6(1,1)		          
+  30(W)	       30(1,1)	        1(0,0)	        6(0,1)		PAGE FAULT
+  15(W)	       30(1,1)	       15(1,1)	        6(0,1)		PAGE FAULT
+  17(W)	       30(1,1)	       15(1,1)	       17(1,1)		PAGE FAULT
+  10(W)	       10(1,1)	       15(0,1)	       17(0,1)		PAGE FAULT
+  3(W)	       10(1,1)	        3(1,1)	       17(0,1)		PAGE FAULT
+  13(R)	       10(1,1)	        3(1,1)	       13(1,0)		PAGE FAULT
+  15(W)	       10(0,1)	        3(0,1)	       15(1,1)		PAGE FAULT
+  8(W)	        8(1,1)	        3(0,1)	       15(1,1)		PAGE FAULT
+  28(R)	        8(1,1)	       28(1,0)	       15(1,1)		PAGE FAULT
+  16(R)	        8(0,1)	       16(1,0)	       15(0,1)		PAGE FAULT
+  5(W)	        8(0,1)	       16(1,0)	        5(1,1)		PAGE FAULT
+  9(W)	        9(1,1)	       16(1,0)	        5(1,1)		PAGE FAULT
+  12(R)	        9(0,1)	       12(1,0)	        5(0,1)		PAGE FAULT
+  3(W)	        9(0,1)	       12(1,0)	        3(1,1)		PAGE FAULT
+  19(W)	       19(1,1)	       12(1,0)	        3(1,1)		PAGE FAULT
+  30(W)	       19(0,1)	       30(1,1)	        3(0,1)		PAGE FAULT
+  4(R)	       19(0,1)	       30(1,1)	        4(1,0)		PAGE FAULT
+  17(W)	       17(1,1)	       30(1,1)	        4(1,0)		PAGE FAULT
+  9(R)	       17(0,1)	       30(0,1)	        9(1,0)		PAGE FAULT
+  11(W)	       11(1,1)	       30(0,1)	        9(1,0)		PAGE FAULT
+  23(W)	       11(1,1)	       23(1,1)	        9(1,0)		PAGE FAULT
+  12(R)	       11(0,1)	       23(0,1)	       12(1,0)		PAGE FAULT
+  11(W)	       11(1,1)	       23(0,1)	       12(1,0)		          
+  16(W)	       11(1,1)	       16(1,1)	       12(1,0)		PAGE FAULT
+  2(R)	       11(0,1)	       16(0,1)	        2(1,0)		PAGE FAULT
+  2(R)	       11(0,1)	       16(0,1)	        2(1,0)		          
+  1(W)	        1(1,1)	       16(0,1)	        2(1,0)		PAGE FAULT
+  29(R)	        1(1,1)	       29(1,0)	        2(1,0)		PAGE FAULT
+  6(R)	        1(0,1)	       29(0,0)	        6(1,0)		PAGE FAULT
+  1(W)	        1(1,1)	       29(0,0)	        6(1,0)		          
+  27(R)	        1(1,1)	       27(1,0)	        6(1,0)		PAGE FAULT
+  5(R)	        1(0,1)	       27(0,0)	        5(1,0)		PAGE FAULT
+  7(R)	        1(0,1)	        7(1,0)	        5(1,0)		PAGE FAULT
+  13(W)	       13(1,1)	        7(1,0)	        5(1,0)		PAGE FAULT
+  6(W)	       13(0,1)	        6(1,1)	        5(0,0)		PAGE FAULT
+  9(R)	       13(0,1)	        6(1,1)	        9(1,0)		PAGE FAULT
+  17(R)	       17(1,0)	        6(1,1)	        9(1,0)		PAGE FAULT
+  13(R)	       17(0,0)	        6(0,1)	       13(1,0)		PAGE FAULT
+  9(W)	        9(1,1)	        6(0,1)	       13(1,0)		PAGE FAULT
+  15(R)	        9(1,1)	       15(1,0)	       13(1,0)		PAGE FAULT
+  28(R)	        9(0,1)	       15(0,0)	       28(1,0)		PAGE FAULT
+  13(W)	        9(0,1)	       13(1,1)	       28(1,0)		PAGE FAULT
+  15(R)	       15(1,0)	       13(1,1)	       28(1,0)		PAGE FAULT
+  1(R)	       15(0,0)	       13(0,1)	        1(1,0)		PAGE FAULT
+  7(R)	        7(1,0)	       13(0,1)	        1(1,0)		PAGE FAULT
+  3(W)	        7(1,0)	        3(1,1)	        1(1,0)		PAGE FAULT
+  30(W)	        7(0,0)	        3(0,1)	       30(1,1)		PAGE FAULT
+  10(R)	       10(1,0)	        3(0,1)	       30(1,1)		PAGE FAULT
+  11(R)	       10(1,0)	       11(1,0)	       30(1,1)		PAGE FAULT
+  9(W)	        9(1,1)	       11(0,0)	       30(0,1)		PAGE FAULT
+  12(R)	        9(1,1)	       12(1,0)	       30(0,1)		PAGE FAULT
+  4(W)	        9(1,1)	       12(1,0)	        4(1,1)		PAGE FAULT
+  12(R)	        9(1,1)	       12(1,0)	        4(1,1)		          
+  22(W)	        9(0,1)	       22(1,1)	        4(0,1)		PAGE FAULT
+  11(R)	        9(0,1)	       22(1,1)	       11(1,0)		PAGE FAULT
+  14(R)	       14(1,0)	       22(1,1)	       11(1,0)		PAGE FAULT
+  15(W)	       14(0,0)	       22(0,1)	       15(1,1)		PAGE FAULT
+  11(R)	       11(1,0)	       22(0,1)	       15(1,1)		PAGE FAULT
+  4(R)	       11(1,0)	        4(1,0)	       15(1,1)		PAGE FAULT
+  20(R)	       20(1,0)	        4(0,0)	       15(0,1)		PAGE FAULT
+  12(W)	       20(1,0)	       12(1,1)	       15(0,1)		PAGE FAULT
+  30(R)	       20(1,0)	       12(1,1)	       30(1,0)		PAGE FAULT
+  17(R)	       17(1,0)	       12(0,1)	       30(0,0)		PAGE FAULT
+  10(R)	       17(1,0)	       12(0,1)	       10(1,0)		PAGE FAULT
+  4(R)	       17(1,0)	        4(1,0)	       10(1,0)		PAGE FAULT
+  14(W)	       17(0,0)	        4(0,0)	       14(1,1)		PAGE FAULT
+  19(R)	       19(1,0)	        4(0,0)	       14(1,1)		PAGE FAULT
+  21(R)	       19(1,0)	       21(1,0)	       14(1,1)		PAGE FAULT
+  26(W)	       26(1,1)	       21(0,0)	       14(0,1)		PAGE FAULT
+  27(W)	       26(1,1)	       27(1,1)	       14(0,1)		PAGE FAULT
+  27(R)	       26(1,1)	       27(1,0)	       14(0,1)		          
+  15(W)	       26(1,1)	       27(1,0)	       15(1,1)		PAGE FAULT
+  1(R)	       26(0,1)	        1(1,0)	       15(0,1)		PAGE FAULT
+  11(R)	       26(0,1)	        1(1,0)	       11(1,0)		PAGE FAULT
+  15(R)	       15(1,0)	        1(1,0)	       11(1,0)		PAGE FAULT
+  7(R)	       15(0,0)	        7(1,0)	       11(0,0)		PAGE FAULT
+  13(W)	       15(0,0)	        7(1,0)	       13(1,1)		PAGE FAULT
+  7(W)	       15(0,0)	        7(1,1)	       13(1,1)		          
+  8(W)	        8(1,1)	        7(1,1)	       13(1,1)		PAGE FAULT
+  16(W)	        8(0,1)	       16(1,1)	       13(0,1)		PAGE FAULT
+  7(W)	        8(0,1)	       16(1,1)	        7(1,1)		PAGE FAULT
+  20(W)	       20(1,1)	       16(1,1)	        7(1,1)		PAGE FAULT
+  19(R)	       20(0,1)	       19(1,0)	        7(0,1)		PAGE FAULT
+  18(W)	       20(0,1)	       19(1,0)	       18(1,1)		PAGE FAULT
+  3(R)	        3(1,0)	       19(1,0)	       18(1,1)		PAGE FAULT
+  29(W)	        3(0,0)	       29(1,1)	       18(0,1)		PAGE FAULT
+  23(W)	       23(1,1)	       29(1,1)	       18(0,1)		PAGE FAULT
+  10(W)	       23(1,1)	       29(1,1)	       10(1,1)		PAGE FAULT
+  10(W)	       23(1,1)	       29(1,1)	       10(1,1)		          
+  27(W)	       27(1,1)	       29(0,1)	       10(0,1)		PAGE FAULT
+  21(W)	       27(1,1)	       21(1,1)	       10(0,1)		PAGE FAULT
+  13(R)	       27(1,1)	       21(1,1)	       13(1,0)		PAGE FAULT
+  18(R)	       27(0,1)	       21(0,1)	       18(1,0)		PAGE FAULT
+  7(W)	        7(1,1)	       21(0,1)	       18(1,0)		PAGE FAULT
+  22(R)	        7(1,1)	       22(1,0)	       18(1,0)		PAGE FAULT
+  14(R)	        7(0,1)	       22(0,0)	       14(1,0)		PAGE FAULT
+  13(R)	        7(0,1)	       13(1,0)	       14(1,0)		PAGE FAULT
+  2(R)	        2(1,0)	       13(1,0)	       14(1,0)		PAGE FAULT
+  26(R)	        2(0,0)	       26(1,0)	       14(0,0)		PAGE FAULT
+  30(W)	        2(0,0)	       26(1,0)	       30(1,1)		PAGE FAULT
+  20(R)	       20(1,0)	       26(1,0)	       30(1,1)		PAGE FAULT
+  22(R)	       20(0,0)	       22(1,0)	       30(0,1)		PAGE FAULT
+  15(W)	       15(1,1)	       22(1,0)	       30(0,1)		PAGE FAULT
+  20(R)	       15(1,1)	       22(1,0)	       20(1,0)		PAGE FAULT
+  2(W)	       15(0,1)	        2(1,1)	       20(0,0)		PAGE FAULT
+  21(W)	       15(0,1)	        2(1,1)	       21(1,1)		PAGE FAULT
+  18(W)	       18(1,1)	        2(1,1)	       21(1,1)		PAGE FAULT
+  6(R)	       18(0,1)	        6(1,0)	       21(0,1)		PAGE FAULT
+  19(R)	       18(0,1)	        6(1,0)	       19(1,0)		PAGE FAULT
+  18(R)	       18(1,0)	        6(1,0)	       19(1,0)		          
+  21(R)	       21(1,0)	        6(0,0)	       19(0,0)		PAGE FAULT
+  25(W)	       21(1,0)	       25(1,1)	       19(0,0)		PAGE FAULT
+  29(W)	       21(1,0)	       25(1,1)	       29(1,1)		PAGE FAULT
+  1(R)	        1(1,0)	       25(0,1)	       29(0,1)		PAGE FAULT
+  5(R)	        1(1,0)	        5(1,0)	       29(0,1)		PAGE FAULT
+  23(W)	        1(1,0)	        5(1,0)	       23(1,1)		PAGE FAULT
+  30(W)	       30(1,1)	        5(0,0)	       23(0,1)		PAGE FAULT
+  27(W)	       30(1,1)	       27(1,1)	       23(0,1)		PAGE FAULT
+  2(R)	       30(1,1)	       27(1,1)	        2(1,0)		PAGE FAULT
+  1(R)	       30(0,1)	       27(0,1)	        1(1,0)		PAGE FAULT
+  15(W)	       15(1,1)	       27(0,1)	        1(1,0)		PAGE FAULT
+  23(R)	       15(1,1)	       23(1,0)	        1(1,0)		PAGE FAULT
+  13(W)	       15(0,1)	       23(0,0)	       13(1,1)		PAGE FAULT
+  3(W)	       15(0,1)	        3(1,1)	       13(1,1)		PAGE FAULT
+  21(W)	       21(1,1)	        3(1,1)	       13(1,1)		PAGE FAULT
+  26(W)	       21(0,1)	       26(1,1)	       13(0,1)		PAGE FAULT
+  16(W)	       21(0,1)	       26(1,1)	       16(1,1)		PAGE FAULT
+  3(R)	        3(1,0)	       26(1,1)	       16(1,1)		PAGE FAULT
+  20(R)	       20(1,0)	       26(0,1)	       16(0,1)		PAGE FAULT
+  11(W)	       20(1,0)	       11(1,1)	       16(0,1)		PAGE FAULT
+  3(W)	       20(1,0)	       11(1,1)	        3(1,1)		PAGE FAULT
+  9(R)	        9(1,0)	       11(0,1)	        3(0,1)		PAGE FAULT
+  24(W)	        9(1,0)	       24(1,1)	        3(0,1)		PAGE FAULT
+  9(R)	        9(1,0)	       24(1,1)	        3(0,1)		          
+  21(R)	        9(1,0)	       24(1,1)	       21(1,0)		PAGE FAULT
+  25(R)	       25(1,0)	       24(0,1)	       21(0,0)		PAGE FAULT
+  21(W)	       25(1,0)	       24(0,1)	       21(1,1)		          
+  30(W)	       25(1,0)	       30(1,1)	       21(1,1)		PAGE FAULT
+  22(W)	       22(1,1)	       30(0,1)	       21(0,1)		PAGE FAULT
+  10(R)	       22(1,1)	       10(1,0)	       21(0,1)		PAGE FAULT
+  17(W)	       22(1,1)	       10(1,0)	       17(1,1)		PAGE FAULT
+  13(W)	       22(0,1)	       13(1,1)	       17(0,1)		PAGE FAULT
+  26(W)	       22(0,1)	       13(1,1)	       26(1,1)		PAGE FAULT
+  15(R)	       15(1,0)	       13(1,1)	       26(1,1)		PAGE FAULT
+  5(W)	        5(1,1)	       13(0,1)	       26(0,1)		PAGE FAULT
+  30(R)	        5(1,1)	       30(1,0)	       26(0,1)		PAGE FAULT
+  30(W)	        5(1,1)	       30(1,1)	       26(0,1)		          
+  4(W)	        5(1,1)	       30(1,1)	        4(1,1)		PAGE FAULT
+  27(W)	       27(1,1)	       30(0,1)	        4(0,1)		PAGE FAULT
+  1(R)	       27(1,1)	        1(1,0)	        4(0,1)		PAGE FAULT
+  26(W)	       27(1,1)	        1(1,0)	       26(1,1)		PAGE FAULT
+  11(R)	       27(0,1)	       11(1,0)	       26(0,1)		PAGE FAULT
+  23(R)	       27(0,1)	       11(1,0)	       23(1,0)		PAGE FAULT
+  30(R)	       30(1,0)	       11(1,0)	       23(1,0)		PAGE FAULT
+  5(W)	       30(0,0)	        5(1,1)	       23(0,0)		PAGE FAULT
+  14(W)	       30(0,0)	        5(1,1)	       14(1,1)		PAGE FAULT
+  26(R)	       26(1,0)	        5(1,1)	       14(1,1)		PAGE FAULT
+  12(R)	       12(1,0)	        5(0,1)	       14(0,1)		PAGE FAULT
+  8(W)	       12(1,0)	        8(1,1)	       14(0,1)		PAGE FAULT
+  15(R)	       12(1,0)	        8(1,1)	       15(1,0)		PAGE FAULT
+  14(W)	       14(1,1)	        8(0,1)	       15(0,0)		PAGE FAULT
+  2(W)	       14(1,1)	        8(0,1)	        2(1,1)		PAGE FAULT
+  15(R)	       14(1,1)	       15(1,0)	        2(1,1)		PAGE FAULT
+  7(W)	       14(0,1)	        7(1,1)	        2(0,1)		PAGE FAULT
+  10(W)	       14(0,1)	        7(1,1)	       10(1,1)		PAGE FAULT
+  5(R)	        5(1,0)	        7(1,1)	       10(1,1)		PAGE FAULT
+  23(W)	       23(1,1)	        7(0,1)	       10(0,1)		PAGE FAULT
+  23(W)	       23(1,1)	        7(0,1)	       10(0,1)		          
+  27(R)	       23(1,1)	       27(1,0)	       10(0,1)		PAGE FAULT
+  15(R)	       23(1,1)	       27(1,0)	       15(1,0)		PAGE FAULT
+  2(W)	       23(0,1)	        2(1,1)	       15(0,0)		PAGE FAULT
+  13(W)	       23(0,1)	        2(1,1)	       13(1,1)		PAGE FAULT
+  19(W)	       19(1,1)	        2(1,1)	       13(1,1)		PAGE FAULT
+  19(R)	       19(1,0)	        2(1,1)	       13(1,1)		          
+  20(R)	       20(1,0)	        2(0,1)	       13(0,1)		PAGE FAULT
+  23(W)	       20(1,0)	       23(1,1)	       13(0,1)		PAGE FAULT
+  19(R)	       20(1,0)	       23(1,1)	       19(1,0)		PAGE FAULT
+  19(W)	       20(1,0)	       23(1,1)	       19(1,1)		          
+  19(R)	       20(1,0)	       23(1,1)	       19(1,0)		          
+  7(R)	        7(1,0)	       23(0,1)	       19(0,0)		PAGE FAULT
+  19(W)	        7(1,0)	       23(0,1)	       19(1,1)		          
+  14(W)	        7(1,0)	       14(1,1)	       19(1,1)		PAGE FAULT
+  9(R)	        9(1,0)	       14(0,1)	       19(0,1)		PAGE FAULT
+  4(W)	        9(1,0)	        4(1,1)	       19(0,1)		PAGE FAULT
+  14(R)	        9(1,0)	        4(1,1)	       14(1,0)		PAGE FAULT
+  14(R)	        9(1,0)	        4(1,1)	       14(1,0)		          
+  9(W)	        9(1,1)	        4(1,1)	       14(1,0)		          
+  1(R)	        9(0,1)	        4(0,1)	        1(1,0)		PAGE FAULT
+  25(R)	       25(1,0)	        4(0,1)	        1(1,0)		PAGE FAULT
+  8(R)	       25(1,0)	        8(1,0)	        1(1,0)		PAGE FAULT
+  7(R)	       25(0,0)	        8(0,0)	        7(1,0)		PAGE FAULT
+  9(R)	        9(1,0)	        8(0,0)	        7(1,0)		PAGE FAULT
+  10(W)	        9(1,0)	       10(1,1)	        7(1,0)		PAGE FAULT
+  21(R)	        9(0,0)	       10(0,1)	       21(1,0)		PAGE FAULT
+  7(W)	        7(1,1)	       10(0,1)	       21(1,0)		PAGE FAULT
+  19(W)	        7(1,1)	       19(1,1)	       21(1,0)		PAGE FAULT
+  18(R)	        7(0,1)	       19(0,1)	       18(1,0)		PAGE FAULT
+  30(R)	       30(1,0)	       19(0,1)	       18(1,0)		PAGE FAULT
+  11(R)	       30(1,0)	       11(1,0)	       18(1,0)		PAGE FAULT
+  14(R)	       30(0,0)	       11(0,0)	       14(1,0)		PAGE FAULT
+  14(W)	       30(0,0)	       11(0,0)	       14(1,1)		          
+  4(W)	        4(1,1)	       11(0,0)	       14(1,1)		PAGE FAULT
+  18(R)	        4(1,1)	       18(1,0)	       14(1,1)		PAGE FAULT
+  24(R)	        4(0,1)	       24(1,0)	       14(0,1)		PAGE FAULT
+  23(W)	        4(0,1)	       24(1,0)	       23(1,1)		PAGE FAULT
+  7(R)	        7(1,0)	       24(1,0)	       23(1,1)		PAGE FAULT
+  16(W)	        7(0,0)	       16(1,1)	       23(0,1)		PAGE FAULT
+  3(R)	        3(1,0)	       16(1,1)	       23(0,1)		PAGE FAULT
+  17(W)	        3(1,0)	       16(1,1)	       17(1,1)		PAGE FAULT
+  26(W)	       26(1,1)	       16(0,1)	       17(0,1)		PAGE FAULT
+  9(R)	       26(1,1)	        9(1,0)	       17(0,1)		PAGE FAULT
+  28(W)	       26(1,1)	        9(1,0)	       28(1,1)		PAGE FAULT
+  10(W)	       26(0,1)	       10(1,1)	       28(0,1)		PAGE FAULT
+  17(R)	       26(0,1)	       10(1,1)	       17(1,0)		PAGE FAULT
+  1(R)	        1(1,0)	       10(1,1)	       17(1,0)		PAGE FAULT
+  15(W)	        1(0,0)	       10(0,1)	       15(1,1)		PAGE FAULT
+  22(R)	       22(1,0)	       10(0,1)	       15(1,1)		PAGE FAULT
+  1(W)	       22(1,0)	        1(1,1)	       15(1,1)		PAGE FAULT
+  15(W)	       22(1,0)	        1(1,1)	       15(1,1)		          
+  9(W)	        9(1,1)	        1(0,1)	       15(0,1)		PAGE FAULT
+  8(R)	        9(1,1)	        8(1,0)	       15(0,1)		PAGE FAULT
+  21(W)	        9(1,1)	        8(1,0)	       21(1,1)		PAGE FAULT
+  9(W)	        9(1,1)	        8(1,0)	       21(1,1)		          
+  17(W)	        9(0,1)	       17(1,1)	       21(0,1)		PAGE FAULT
+  3(W)	        9(0,1)	       17(1,1)	        3(1,1)		PAGE FAULT
+  15(R)	       15(1,0)	       17(1,1)	        3(1,1)		PAGE FAULT
+  28(R)	       28(1,0)	       17(0,1)	        3(0,1)		PAGE FAULT
+  20(W)	       28(1,0)	       20(1,1)	        3(0,1)		PAGE FAULT
+  14(R)	       28(1,0)	       20(1,1)	       14(1,0)		PAGE FAULT
+  30(R)	       30(1,0)	       20(0,1)	       14(0,0)		PAGE FAULT
+  3(R)	       30(1,0)	       20(0,1)	        3(1,0)		PAGE FAULT
+  19(W)	       30(1,0)	       19(1,1)	        3(1,0)		PAGE FAULT
+  4(W)	       30(0,0)	       19(0,1)	        4(1,1)		PAGE FAULT
+  21(R)	       21(1,0)	       19(0,1)	        4(1,1)		PAGE FAULT
+  12(R)	       21(1,0)	       12(1,0)	        4(1,1)		PAGE FAULT
+  18(W)	       18(1,1)	       12(0,0)	        4(0,1)		PAGE FAULT
+  19(R)	       18(1,1)	       19(1,0)	        4(0,1)		PAGE FAULT
+  20(W)	       18(1,1)	       19(1,0)	       20(1,1)		PAGE FAULT
+  12(W)	       18(0,1)	       12(1,1)	       20(0,1)		PAGE FAULT
+  6(W)	       18(0,1)	       12(1,1)	        6(1,1)		PAGE FAULT
+  15(W)	       15(1,1)	       12(1,1)	        6(1,1)		PAGE FAULT
+  20(W)	       15(0,1)	       20(1,1)	        6(0,1)		PAGE FAULT
+  3(R)	       15(0,1)	       20(1,1)	        3(1,0)		PAGE FAULT
+  16(R)	       16(1,0)	       20(1,1)	        3(1,0)		PAGE FAULT
+  28(W)	       16(0,0)	       20(0,1)	       28(1,1)		PAGE FAULT
+  25(W)	       25(1,1)	       20(0,1)	       28(1,1)		PAGE FAULT
+  30(W)	       25(1,1)	       30(1,1)	       28(1,1)		PAGE FAULT
+  20(R)	       25(0,1)	       30(0,1)	       20(1,0)		PAGE FAULT
+  25(R)	       25(1,0)	       30(0,1)	       20(1,0)		          
+  6(R)	       25(1,0)	        6(1,0)	       20(1,0)		PAGE FAULT
+  20(W)	       25(1,0)	        6(1,0)	       20(1,1)		          
+  24(R)	       24(1,0)	        6(0,0)	       20(0,1)		PAGE FAULT
+  26(W)	       24(1,0)	       26(1,1)	       20(0,1)		PAGE FAULT
+  28(R)	       24(1,0)	       26(1,1)	       28(1,0)		PAGE FAULT
+  11(R)	       11(1,0)	       26(0,1)	       28(0,0)		PAGE FAULT
+  29(R)	       11(1,0)	       26(0,1)	       29(1,0)		PAGE FAULT
+  12(R)	       11(1,0)	       12(1,0)	       29(1,0)		PAGE FAULT
+  30(R)	       11(0,0)	       12(0,0)	       30(1,0)		PAGE FAULT
+  10(W)	       10(1,1)	       12(0,0)	       30(1,0)		PAGE FAULT
+  18(R)	       10(1,1)	       18(1,0)	       30(1,0)		PAGE FAULT
+  29(W)	       10(0,1)	       18(0,0)	       29(1,1)		PAGE FAULT
+  13(W)	       10(0,1)	       13(1,1)	       29(1,1)		PAGE FAULT
+  6(R)	        6(1,0)	       13(1,1)	       29(1,1)		PAGE FAULT
+  24(R)	       24(1,0)	       13(0,1)	       29(0,1)		PAGE FAULT
+  25(W)	       24(1,0)	       25(1,1)	       29(0,1)		PAGE FAULT
+  10(R)	       24(1,0)	       25(1,1)	       10(1,0)		PAGE FAULT
+  11(W)	       11(1,1)	       25(0,1)	       10(0,0)		PAGE FAULT
+  13(W)	       11(1,1)	       25(0,1)	       13(1,1)		PAGE FAULT
+  21(W)	       11(1,1)	       21(1,1)	       13(1,1)		PAGE FAULT
+  22(R)	       11(0,1)	       21(0,1)	       22(1,0)		PAGE FAULT
+  10(W)	       10(1,1)	       21(0,1)	       22(1,0)		PAGE FAULT
+  27(R)	       10(1,1)	       27(1,0)	       22(1,0)		PAGE FAULT
+  3(W)	       10(0,1)	       27(0,0)	        3(1,1)		PAGE FAULT
 
-LRU: 
-	Page faults : 445
-	       Hits : 55
-	  Hit Ratio : 11.00%
+Enhanced Second Chance: 
+	Page faults : 455
+	       Hits : 45
+	  Hit Ratio : 9.00%
 -----------------------------------------
 
 
