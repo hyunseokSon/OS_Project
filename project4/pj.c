@@ -6,15 +6,15 @@
 
 typedef struct node
 {
-	int data;
-	struct node *next;
+	int data; // 노드에 들어갈 데이터
+	struct node *next; // 다음 노드를 가리킴
 } Node;
 
 typedef struct Queue
 {
 	Node *front; //맨 앞(꺼낼 위치)
 	Node *rear;	 //맨 뒤(보관할 위치)
-	int count;
+	int count; // 노드 개수
 } Queue;
 
 void random_reference_string(int page_string[]); //무작위로 참조 스트림 만드는 함수
@@ -23,8 +23,8 @@ int menu_b(int, char fin[4]); // B 메뉴 호출 함수
 int menu_c(int, char fin[4]); // C 메뉴 호출 함수
 void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500]); // C의 데이터 입력 방식에 따른 처리 함수
 int check_index(int page_frame, int *pageArray, int n); // 참조 스트림 값이 페이지에 있는지 확인하는 함수
-int nearIndex(int pf, int cur, int *pageArray, int n); //가장 가까이 있는 값 확인
-int checkMax(int pf, int *pageArray, int check_value); // 가장 멀리 있는 값 확인
+int nearIndex(int pf, int cur, int *array, int n); //가장 가까이 있는 값 확인
+int checkMax(int pf, int *pageArray); // 가장 멀리 있는 값 확인
 void opt(int page_string[500], int page_frame, int *pageArray); // opt
 void fifo(int page_string[500], int page_frame, int *pageArray); // fifo
 void lifo(int page_string[500], int page_frame, int *pageArray); // lifo
@@ -58,31 +58,34 @@ int main()
 
 		printf("A. Page Replacement 알고리즘 시뮬레이터를 선택하시오. (최대 3개 선택 가능, 종료 명령어 : 2625)\n");
 		printf("(1) Optimal (2) FIFO (3) LIFO (4) LRU (5) LFU (6) SC (7) ESC (8) ALL\n");
-		fgets(menu, 50, stdin);
-		menu[strlen(menu) - 1] = 0;
+		fgets(menu, 50, stdin); // 문자열을 입력받는다.
+		menu[strlen(menu) - 1] = 0; 
 
+		// 학번(20182625)의 뒷자리인 2625를 입력하면 프로그램이 종료된다.
 		if (strcmp(menu, fin) == 0)
 		{
 			printf("프로그램을 종료합니다...\n");
 			break;
 		}
 
-		char *ptr = strtok(menu, " "); //공백 문자열을 기준으로 문자열을 자른다.
+		//공백 문자열을 기준으로 문자열을 자른다.
+		char *ptr = strtok(menu, " ");
 		while (ptr != NULL)
 		{
 			choiceMenu[i] = ptr; // 공백 이전의 문자열을 가져온다.
 			realMenu[i] = atoi(choiceMenu[i]);
-			if (realMenu[i] <1 || realMenu[i] > 8)
+			if (realMenu[i] <1 || realMenu[i] > 8) // 메뉴가 1~8 범위로 입력되지 않았을 때
 			{
 				printf("\n입력 에러 : 범위 사이의 값(1~8)을 입력하세요.\n");
 				flag=1;
 				break;
 			}
-			else if(realMenu[i] == 8) {
+			else if(realMenu[i] == 8) { // 8을 입력하면 flagEight=1로 설정한다.
 				flagEight=1;
 				break;
 			}
 			i++;
+			//3개 이상 메뉴를 선택했을 때
 			if ( i > 3)
 			{
 				printf("\n입력 에러 : 최대 3개의 값만 입력 가능합니다. 다시 시도하세요.\n");
@@ -109,7 +112,8 @@ int main()
 		for (c=0; c<500; c++)
 			fprintf(fp, "%3d", page_string[c]);
 
-		if (flagEight == 0) // 8번 메뉴를 선택하지 않았을 때
+		// 8번 메뉴를 선택하지 않았을 때
+		if (flagEight == 0) 
 		{
 			printf("\n\n선택하신 메뉴는");
 			fprintf(fp,"\n\n선택하신 메뉴는 ");
@@ -125,6 +129,7 @@ int main()
 			// 1번 메뉴를 선택했을 때
 			if (flagOpt) 
 			{
+				//선택한 메뉴들을 보여주는 문장
 				for (c = 0; c < 10; c++)
 				{
 					if (realMenu[c] != '\0') {
@@ -181,6 +186,7 @@ int main()
 			{
 				for (c = 0; c < 10; c++)
 				{
+					//선택한 메뉴들을 보여주는 문장
 					if (realMenu[c] != '\0') {
 						printf("%2d번", realMenu[c]);
 						fprintf(fp,"%2d번", realMenu[c]);
@@ -236,7 +242,7 @@ int main()
 		{
 			printf("\n 모든 알고리즘을 수행합니다.\n");
 			fprintf(fp,"\n\n모든 알고리즘을 수행합니다.\n");
-			fclose(fp);
+			fclose(fp); // 알고리즘 시작 전 fclose()수행 후 각 알고리즘 별로 수행 시 파일 끝에 추가.
 
 			opt(page_string, page_frame, pageArray);
 			fifo(page_string, page_frame, pageArray);
@@ -280,6 +286,7 @@ int menu_b(int page_frame, char fin[4])
 		scanf("%d", &page_frame);
 		cleanBuffer();
 
+		//2625 입력 시 프로그램 종료.
 		end = atoi(fin);
 		if (page_frame == end)
 		{
@@ -333,8 +340,7 @@ int menu_c(int input_data, char fin[4])
 void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500])
 {
 	// 데이터 입력 방식 1일 때.
-	// 즉, 랜덤하게 생성할 때
-
+	// 즉, 랜덤하게 생성 후 화면에 출력만 해줄 때
 	if (input_data == 1)
 	{
 		random_reference_string(page_string);
@@ -347,7 +353,7 @@ void do_menu_c(FILE *f1, FILE *f2, int input_data, int page_string[500])
 	}
 
 	// 데이터 입력 방식 2일 때.
-	// 즉, 사용자 생성 파일을 오픈할 때.
+	// 즉, 파일 생성 후 오픈할 때.
 	else if (input_data == 2)
 	{
 		int temp = 0;
@@ -405,14 +411,15 @@ int check_index(int page_frame, int *pageArray, int n)
 }
 
 // 가장 가까이 있는 것 확인
-int nearIndex(int total, int cur, int *pageArray, int n)
+int nearIndex(int total, int cur, int *array, int n)
 {
 	// tatal은 전체 참조 스트림 갯수, cur은 현재 위치,
-	// n은 참조 스트링 값을 의미한다.
+	// array는 참조 배열, n은 페이지에 있는 값을 의미한다.
 	int a = cur;
+	//해당 시점부터 500개의 참조 스트링까지 반복
 	for (a++; a < total; a++)
 	{
-		if (pageArray[a] == n)
+		if (array[a] == n)
 		{
 			return a;
 		}
@@ -421,50 +428,33 @@ int nearIndex(int total, int cur, int *pageArray, int n)
 }
 
 // 가장 멀리 있는 값을 확인하는 함수
-int checkMax(int pf, int *pageArray, int check_value)
+int checkMax(int pf, int *pageArray)
 {
 	//pf는 page_frame을 의미.
 	int ch = 0;
-	if (check_value == 1) // 최대일 때
-	{
-		int n = 0;
-		int big = pageArray[0];
+	int n = 0;
+	int big = pageArray[0];
 
-		for (n++; n < pf; n++)
-		{
-			if (pageArray[n] > big)
-			{
-				big = pageArray[n];
-				ch = n;
-			}
-		}
-		return ch;
-	}
-
-	else
+	//페이지 프레임 수 만큼 반복
+	for (n++; n < pf; n++)
 	{
-		int n = 0;
-		int small = pageArray[0];
-		for (n++; n < pf; n++)
+		if (pageArray[n] > big)
 		{
-			if (pageArray[n] < small)
-			{
-				small = pageArray[n];
-				ch = n;
-			}
+			big = pageArray[n];
+			ch = n;
 		}
-		return ch;
 	}
+	return ch;
 }
 
 // 1번 메뉴 : Optimal
 void opt(int page_string[500], int page_frame, int *pageArray)
 {
 	FILE *fp;
-	int index = -1;
-	int fault = 0, flag_fault = 0;
-	int t;
-	int block = 0;
+	int index = -1;			// 페이지 배열 인덱스
+	int fault = 0, flag_fault = 0;	//fault : fault일 때 개수, flag_fault : fault일 때의 flag값
+	int t;					// 반복문을 위한 변수
+	int block = 0;			// 페이지 프레임 개수만큼 반복을 수행하기 위한 변수
 	int nIndex[page_frame]; // 다음 인덱스를 의미하는 배열
 
 	fp = fopen("20182625.txt", "a");
@@ -505,9 +495,11 @@ void opt(int page_string[500], int page_frame, int *pageArray)
 				int tmp = 0;
 				for (; tmp < page_frame; tmp++)
 				{
+					//가장 가까이 있는 참조 스트림 값을 넣는다.
 					nIndex[tmp] = nearIndex(500, t, page_string, pageArray[tmp]);
 				}
-				int goal = checkMax(page_frame, nIndex, 1);
+				//가장 멀리 있는 값
+				int goal = checkMax(page_frame, nIndex);
 				pageArray[goal] = page_string[t];
 			}
 
@@ -525,12 +517,14 @@ void opt(int page_string[500], int page_frame, int *pageArray)
 		printf("    %d\t", page_string[t]);
 		fprintf(fp,"    %d\t", page_string[t]);
 
+		//페이지 배열 출력
 		for (int tmp = 0; tmp < page_frame; tmp++)
 		{
 			printf("%11d\t", pageArray[tmp]);
 			fprintf(fp,"%11d\t", pageArray[tmp]);
 		}
 
+		//flag일 때
 		if (flag_fault)
 		{
 			printf("\tPAGE FAULT\n");
@@ -538,6 +532,7 @@ void opt(int page_string[500], int page_frame, int *pageArray)
 			flag_fault = 0;
 		}
 
+		//hit일 때
 		else
 		{
 			printf("\t          \n");
@@ -564,9 +559,9 @@ void opt(int page_string[500], int page_frame, int *pageArray)
 void fifo(int page_string[500], int page_frame, int *pageArray)
 {
 	FILE *f;
-	int index = -1;
-	int fault = 0, t;
-	int flag_fault = 0;
+	int index = -1; // 페이지 배열 인덱스
+	int fault = 0, t; // fault는 fault 발생 횟수 count, t는 반복문을 위한 변수
+	int flag_fault = 0; // fault인지 hit인지 구분해주는 flag
 
 	f = fopen("20182625.txt", "a");
 
@@ -644,9 +639,10 @@ void fifo(int page_string[500], int page_frame, int *pageArray)
 void lifo(int page_string[500], int page_frame, int *pageArray)
 {
 	FILE *fp;
-	int t;
-	int index = -1;
-	int fault = 0, flag_fault = 0;
+	int t;							//반복문을 위한 변수
+	int index = -1;					//페이지 배열 인덱스
+	int fault = 0, flag_fault = 0;	// fault는 총 fault 수 count, 
+									// flag_fault는 fault/hit 구분 flag
 	printf("-----------------------------------------");
 	printf("\n (3). LIFO \n");
 	printf("-----------------------------------------");
@@ -726,33 +722,33 @@ void lifo(int page_string[500], int page_frame, int *pageArray)
 // 큐 초기화
 void initQueue(Queue *queue)
 {
-	queue->front = queue->rear = NULL; // front와 rear 초기화
-	queue->count = 0;				   // 보관 개수를 0으로 설정
+	queue->front = queue->rear = NULL; // front와 rear값 NULL로 초기화
+	queue->count = 0;				   // 보관 개수 0으로 초기화
 }
 
 // 큐가 비었는지 확인.
 int isEmpty(Queue *queue)
 {
-	return queue->count == 0; //보관 개수가 0이면 빈 상태
+	return queue->count == 0; //보관 개수가 0이면 빈 상태를 의미
 }
 
 //큐에서 새로운 node값 가져오기.
 int getQueue(Queue *queue, int data)
 {
-	Node *now = (Node *)malloc(sizeof(Node)); //노드 생성
-	now->data = data;						  //데이터 설정
+	Node *now = (Node *)malloc(sizeof(Node)); // 노드를 생성
+	now->data = data;						  // 데이터 지정
 	now->next = NULL;
 
-	if (isEmpty(queue)) //큐가 비어있을 때
+	if (isEmpty(queue)) //큐에 노드가 없을 때(비어있을 때)
 	{
-		queue->front = now; //맨 앞을 now로 설정
+		queue->front = now; //맨 앞이 now가 됨.
 	}
-	else //비어있지 않을 때
+	else //노드가 있을 때(비어있지 않을 때)
 	{
-		queue->rear->next = now; //맨 뒤의 다음을 now로 설정
+		queue->rear->next = now; //맨 마지막의 다음을 now로 설정
 	}
-	queue->rear = now; //맨 뒤를 now로 설정
-	queue->count++;	   //보관 개수를 1 증가
+	queue->rear = now; //맨 뒤를 now로 지정
+	queue->count++;	   //보관 개수 1 증가
 	return now->data;
 }
 
@@ -760,12 +756,12 @@ int getQueue(Queue *queue, int data)
 void deQueue(Queue *queue)
 {
 	Node *now;
-	if (!isEmpty(queue)) 
+	if (!isEmpty(queue)) 	  // 큐가 비어있지 않을 때
 	{
-	now = queue->front;		  //맨 앞의 노드를 now에 기억
-	queue->front = now->next; //맨 앞은 now의 다음 노드로 설정
-	free(now);				  // now 소멸
-	queue->count--;			  //보관 개수를 1 감소
+	now = queue->front;		  //맨 앞의 노드를 now로 지정
+	queue->front = now->next; //맨 앞은 now의 다음 노드로 지정
+	free(now);				  // now 메모리 해제
+	queue->count--;			  //보관 개수 1 감소
 	}
 }
 
@@ -773,16 +769,16 @@ void deQueue(Queue *queue)
 int searchQueue(Queue *queue, int value)
 {
 	Node *search;
-	search = queue->front;
+	search = queue->front;	//Queue의 맨 앞에서 시작
 
 	while (search != NULL)
 	{
-		if (search->data == value)
+		if (search->data == value)	//해당 값을 찾았을 때
 			return 1;
 
 		search = search->next;
 	}
-	return 0;
+	return 0;				//해당 값을 찾지 못했을 때
 }
 
 // LRU에서 hit 발생 시 처리 함수
@@ -827,9 +823,8 @@ void hitQueue(Queue *queue, int value)
 void lru(int page_string[500], int page_frame, Queue *queue, int *pageArray)
 {
 	FILE *fp;
-	int fault = 0, flag_fault = 0;
-	int t;
-	int c;
+	int fault = 0, flag_fault = 0; //fault는 총 발생 횟수 count, flag_fault는 fault/hit 구분 flag
+	int t,c; // 반복문을 위한 변수
 
 	printf("-----------------------------------------");
 	printf("\n (4). LRU \n");
@@ -845,6 +840,7 @@ void lru(int page_string[500], int page_frame, Queue *queue, int *pageArray)
 	initQueue(queue); // 큐 초기화
 	Node *result = (Node *)malloc(sizeof(Node));
 
+	// 페이지 배열 값을 -1로 초기화
 	for (t = 0; t < page_frame; t++)
 	{
 		pageArray[t] = -1;
@@ -859,32 +855,35 @@ void lru(int page_string[500], int page_frame, Queue *queue, int *pageArray)
 	{
 		result = queue->front;
 
-			// hit일 때
-			if (searchQueue(queue, page_string[t]))
+		// hit일 때
+		if (searchQueue(queue, page_string[t]))
+		{
+			hitQueue(queue, page_string[t]);
+			flag_fault = 0;
+			result = queue->front;
+			for (c = 0; c < page_frame; c++)
 			{
-				hitQueue(queue, page_string[t]);
-				flag_fault = 0;
-				result = queue->front;
-				for (c = 0; c < page_frame; c++)
+				//data를 페이지 배열에 써주고 노드를 다음 곳으로 가리킴
+				if (result != NULL)
 				{
-					if (result != NULL)
-					{
-						pageArray[c] = result->data;
-						result = result->next;
-					}
+					pageArray[c] = result->data;
+					result = result->next;
 				}
 			}
+		}
 
-			// fault일 때
+		// fault일 때
+		else
+		{
+			//페이지 프레임 만큼 노드가 만들어지지 않았을 때
+			if (queue->count < page_frame) 
+				pageArray[t] = getQueue(queue,page_string[t]);
+
 			else
 			{
-				if (queue->count < page_frame)
-					pageArray[t] = getQueue(queue,page_string[t]);
 				deQueue(queue);
 				getQueue(queue, page_string[t]);
-				result = queue->front;
-				fault++;
-				flag_fault = 1;
+				result = queue->front; //dequeue에서 front가 바뀐다.
 				for (c = 0; c < page_frame; c++)
 				{
 					if (result != NULL)
@@ -894,6 +893,9 @@ void lru(int page_string[500], int page_frame, Queue *queue, int *pageArray)
 					}
 				}
 			}
+			fault++;
+			flag_fault = 1;
+		}
 
 		//결과 과정 출력
 		printf("    %d\t", page_string[t]);
@@ -975,7 +977,7 @@ void lfu(int page_string[500], int page_frame, int *pageArray)
 			//찾은 값을 counter에 넣기 위해 한 번 더 search 한다.
 			for (c=0; c<page_frame; c++)
 			{
-				if(pageArray[c] = page_string[t])
+				if(pageArray[c] == page_string[t])
 					counter[c]++;
 			}
 			flag_fault = 0;
@@ -999,6 +1001,7 @@ void lfu(int page_string[500], int page_frame, int *pageArray)
 				min=counter[0]; 
 				for(c=1; c<page_frame; c++)
 				{
+					//페이지 배열을 돌면서 counter값을 비교
 					if (counter[c]<min)
 					{
 						upIndex=c;
